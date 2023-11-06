@@ -13,11 +13,17 @@ def main():
     deltaTime = 0
     run = True
     while run:
+        # managment des events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+
+        # update du jeu
+
+        # rendu
+        screen.fill("white")
         
-        
+        pygame.display.update()
         deltaTime = clock.tick(TARGET_FPS) / 1000
 
 if __name__ == "__main__":
