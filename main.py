@@ -12,15 +12,18 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    t_note = Bulle(1000, 300, pygame.K_s)
+    t_note = Bulle(1000, 300, pygame.K_f)
     t_bulle_man = BulleManager()
     t_bulle_man.add(t_note)
-    t_bulle_man.add(Bulle(1400, 300, pygame.K_s))
-    t_bulle_man.add(Bulle(1500, 300, pygame.K_j))
+    t_bulle_man.add(Bulle(1400, 300, pygame.K_f))
+    t_bulle_man.add(Bulle(1500, 300, pygame.K_RETURN))
+    Bulle.init_surface()
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
     detec = detec_surf.get_rect(topleft=(100, 250))
+
+    bg = pygame.image.load("data/backgrounds/BackgroundLevel.png").convert()
 
     deltaTime = 0
     run = True
@@ -38,7 +41,7 @@ def main():
         t_bulle_man.update(deltaTime, detec)
 
         # rendu
-        screen.fill("white")
+        screen.blit(bg, (0,0))
 
         screen.blit(detec_surf, detec.topleft)
         

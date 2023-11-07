@@ -2,6 +2,7 @@ import pygame
 
 class Bulle:
     NOTE_SPEED = 500
+    bulle_surface = {}
     def __init__(self, init_x, init_y, keycode):
         self.image = pygame.Surface((32, 32))
         self.image.fill("blue")
@@ -12,9 +13,19 @@ class Bulle:
         self.alive = True
         self.answer = None
     
+    @staticmethod
+    def init_surface():
+        Bulle.bulle_surface = {
+            pygame.K_f: pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),
+            pygame.K_j: pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),
+            pygame.K_TAB: pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),
+            pygame.K_SEMICOLON: pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),
+            pygame.K_RETURN: pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),
+            pygame.K_EQUALS: pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha()
+        }
     def draw(self, screen:pygame.Surface):
         if self.alive:
-            screen.blit(self.image, self.rect)
+            screen.blit(Bulle.bulle_surface[self.keycode], self.rect)
 
     def update(self, dt:float):
         self.rect.x += Bulle.NOTE_SPEED * -1 * dt
