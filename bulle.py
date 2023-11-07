@@ -4,8 +4,8 @@ class Bulle:
     NOTE_SPEED = 500
     bulle_surface = {}
     def __init__(self, init_x, init_y, keycode):
-        self.image = pygame.Surface((32, 32))
-        self.image.fill("blue")
+        self.image = pygame.Surface((64,64))
+        #self.image.fill("blue")
         self.rect = self.image.get_rect()
         self.rect.x = init_x
         self.rect.y = init_y
@@ -16,12 +16,13 @@ class Bulle:
     @staticmethod
     def init_surface():
         Bulle.bulle_surface = {
-            pygame.K_f: pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),
-            pygame.K_j: pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),
-            pygame.K_TAB: pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),
-            pygame.K_SEMICOLON: pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),
-            pygame.K_RETURN: pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),
-            pygame.K_EQUALS: pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha()
+            pygame.K_f: pygame.transform.scale(pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),(64,64)),
+            pygame.K_j: pygame.transform.scale(pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),(64,64)),
+            pygame.K_TAB: pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),(64,64)),
+            pygame.K_SEMICOLON: pygame.transform.scale(pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),(64,64)),
+            pygame.K_RETURN: pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),(64,64)),
+            pygame.K_EQUALS: pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64))
+            
         }
     def draw(self, screen:pygame.Surface):
         if self.alive:

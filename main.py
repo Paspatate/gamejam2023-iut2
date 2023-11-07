@@ -9,19 +9,22 @@ def main():
     WIN_WIDTH = 1024
     TARGET_FPS = 60
 
+    pygame.mixer.music.load("./data/music/music_bells.ogg","ogg")
+    pygame.mixer.music.play()
+    
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    t_note = Bulle(1000, 300, pygame.K_f)
+    t_note = Bulle(1000, 350, pygame.K_f)
     t_bulle_man = BulleManager()
     t_bulle_man.add(t_note)
-    t_bulle_man.add(Bulle(1400, 300, pygame.K_f))
-    t_bulle_man.add(Bulle(1500, 300, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(1400, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(1500, 350, pygame.K_RETURN))
     Bulle.init_surface()
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(topleft=(100, 250))
+    detec = detec_surf.get_rect(topleft=(151.5, 334))
 
     bg = pygame.image.load("data/backgrounds/BackgroundLevel.png").convert()
 
@@ -35,8 +38,6 @@ def main():
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 t_bulle_man.handle_key(event.key, detec)
-
-        
         
         # update du jeu
         t_bulle_man.update(deltaTime, detec)
