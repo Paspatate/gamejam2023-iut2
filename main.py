@@ -16,33 +16,34 @@ def main():
     t_bulle_man = BulleManager()
     t_bulle_man.add(t_note)
     t_bulle_man.add(Bulle(1400, 300, pygame.K_s))
+    t_bulle_man.add(Bulle(1500, 300, pygame.K_j))
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(topleft=(50, 250))
+    detec = detec_surf.get_rect(topleft=(100, 250))
 
     deltaTime = 0
     run = True
-    keys = dict()
     while run:
         # managment des events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                t_bulle_man.handle_key(event.key, detec)
 
-        keys = pygame.key.get_pressed()
-        t_note.handle_key(keys, detec)
 
         # update du jeu
-        t_note.update(deltaTime)
+        t_bulle_man.update(deltaTime, detec)
 
         # rendu
         screen.fill("white")
 
         screen.blit(detec_surf, detec.topleft)
         
-        t_note.draw(screen)
+        t_bulle_man.draw(screen)
+        
 
         pygame.display.update()
         deltaTime = clock.tick(TARGET_FPS) / 1000
