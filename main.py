@@ -36,7 +36,8 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 t_bulle_man.handle_key(event.key, detec)
 
-
+        
+        
         # update du jeu
         t_bulle_man.update(deltaTime, detec)
 

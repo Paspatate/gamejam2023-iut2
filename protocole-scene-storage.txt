@@ -1,11 +1,9 @@
 Start level
 "Nom de la scene"
 "chemin background"
-Start exo
 "dialogue"
 Start bulle
 "x de la bulle","key de la bulle"
 "...","..."
-End exo
 End bulle
 End level
