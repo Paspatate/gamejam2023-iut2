@@ -14,6 +14,7 @@ class Bulle:
         self.answer = True
         self.has_responded = False
         self.pos = pygame.Vector2(init_x,init_y)
+        self.can_interact = True
 
     @staticmethod
     def init_surface():
@@ -47,16 +48,19 @@ class Bulle:
             self.kill()
 
     def handle_key(self, keys, detection_zone: pygame.Rect) -> bool:
-        if keys == self.keycode and self.alive:
+        if keys == self.keycode and self.can_interact and not self.has_responded:
             self.has_responded = True
             self.answer = detection_zone.collidepoint(self.rect.center)
             return True
         return False
+    
     def kill(self):
         self.alive = False
+        self.can_interact = False
 
-    def __str__(self):
-        return f"alive: {self.alive}"
+    def stop_interaction(self):
+        self.can_interact = False
+
 
 # Gere toute les bulles d'un niveau (détéction, mise a jour et affichage)
 class BulleManager:
@@ -68,19 +72,39 @@ class BulleManager:
       self.bulles.append(bulle)
 
     def update(self, dt:float, detection_zone: pygame.Rect):
-        if len(self.bulles) > self.current and detection_zone.left > self.bulles[self.current].rect.right:
-            # passage a la prochaine
-            self.bulles[self.current].kill()
-            self.current += 1
+        # kill est passage a la suivante quand:
+        # pas réponse -> a sortie de la detection_zone,
+        # réponse fausse -> entré de la detection zone
+        # réponse juste -> dans la zone (forcément)
+        if self.current < len(self.bulles):
+            if self.bulles[self.current].answer == False:
+                self.bulles[self.current].stop_interaction()
+                if detection_zone.right > self.bulles[self.current].rect.centerx:
+                    self.current += 1
+                # réponse fausse
+            elif detection_zone.left > self.bulles[self.current].rect.right:
+                # passage a la prochaine
+                self.bulles[self.current].kill()
+                self.current += 1
+                # réponse tard
+            elif self.bulles[self.current].has_responded and self.bulles[self.current].answer:
+                self.current += 1
+                # réponse juste
+        
+        # réponse just
         for bulle in self.bulles:
             bulle.update(dt)
 
     def handle_key(self, keys:pygame.event.Event, detection_zone: pygame.Rect):
         # test pour voir si on est a la fin des bulles
         if (len(self.bulles) <= self.current):
-            return
+            return None
+        pre_has_responded = self.bulles[self.current].has_responded
 
         self.bulles[self.current].handle_key(keys, detection_zone)
+        rep =  self.bulles[self.current].answer if not pre_has_responded else None
+        self.bulles[self.current].has_responded = True
+        return rep
 
         
 
