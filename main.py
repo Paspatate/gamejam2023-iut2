@@ -33,6 +33,18 @@ def main():
     t_bulle_man.add(Bulle(11419.00, 350, pygame.K_f))
     t_bulle_man.add(Bulle(12169.00, 350, pygame.K_j))
     t_bulle_man.add(Bulle(12919.00, 350, pygame.K_f))
+    
+    t_bulle_man.add(Bulle(15169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(15919.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(16669.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(17044.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(17419.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_RETURN))
+    
     #t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
     
     Bulle.init_surface()
