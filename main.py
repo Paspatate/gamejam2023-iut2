@@ -20,11 +20,19 @@ def main():
     t_bulle_man.add(t_note)
     t_bulle_man.add(Bulle(2419.00, 350, pygame.K_f))
     t_bulle_man.add(Bulle(3169.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(3919.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(3919.00, 350, pygame.K_j))
     t_bulle_man.add(Bulle(4669.00, 350, pygame.K_f))
     t_bulle_man.add(Bulle(5419.00, 350, pygame.K_f))    
-    t_bulle_man.add(Bulle(6169.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(6300.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(6169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(6919.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(7669.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(8419.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(9169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(9919.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(11419.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(12169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(12919.00, 350, pygame.K_f))
     #t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
     
     Bulle.init_surface()
@@ -41,7 +49,7 @@ def main():
     bulle_eleve = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
     qasm_img = pygame.image.load("data/questions/assembleurR.png").convert_alpha()
     list_qasm_img = []
-    num_slice = 8
+    num_slice = 16
     width_slice = qasm_img.get_width()//num_slice
     scaleX = 380/ num_slice
     scaleY = 100
