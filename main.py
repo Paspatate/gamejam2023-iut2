@@ -9,7 +9,7 @@ def main():
     WIN_WIDTH = 1024
     TARGET_FPS = 60
 
-    pygame.mixer.music.load("./data/music/music_bells.ogg","ogg")
+    pygame.mixer.music.load("./data/music/audio_bells.ogg","ogg")
     pygame.mixer.music.play()
     
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
