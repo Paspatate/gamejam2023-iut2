@@ -31,6 +31,7 @@ def main():
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
     detec = detec_surf.get_rect(center=(201, 384))
+    print(detec.left)
 
     bg = pygame.image.load("data/backgrounds/BackgroundLevel.png").convert()
 
@@ -97,7 +98,7 @@ def main():
         pygame.display.update()
 
         deltaTime = clock.get_time()
-        clock.tick_busy_loop(TARGET_FPS)
+        clock.tick(TARGET_FPS)
         
 
         
