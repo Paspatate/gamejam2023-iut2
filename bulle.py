@@ -11,7 +11,7 @@ class Bulle:
         self.rect.y = init_y
         self.keycode = keycode
         self.alive = True
-        self.answer = True
+        self.answer = False
         self.has_responded = False
         self.pos = pygame.Vector2(init_x,init_y)
         self.can_interact = True
@@ -56,16 +56,18 @@ class Bulle:
         # if not self.answer:
         #     self.
 
-        if self.rect.centerx <= 151 or (self.has_responded and self.answer):
-            self.answer = False
+        if self.rect.centerx <= 151:
             self.kill()
 
-    def handle_key(self, keys, detection_zone: pygame.Rect) -> bool:
-        if keys == self.keycode and self.can_interact and not self.has_responded:
-            self.has_responded = True
-            self.answer = detection_zone.collidepoint(self.rect.center)
-            return True
-        return False
+    def handle_key(self, keys, detection_zone: pygame.Rect) -> int:
+        self.has_responded = True
+        if self.can_interact:
+            if (keys == self.keycode and detection_zone.collidepoint(self.rect.center)):
+                self.answer = True
+                return 0
+            else:
+                return 1
+        return 2
     
     def kill(self):
         self.alive = False
@@ -90,7 +92,7 @@ class BulleManager:
         # réponse fausse -> entré de la detection zone
         # réponse juste -> dans la zone (forcément)
         if self.current < len(self.bulles):
-            if self.bulles[self.current].answer == False:
+            if self.bulles[self.current].answer == False and self.bulles[self.current].has_responded :
                 self.bulles[self.current].stop_interaction()
                 if detection_zone.right > self.bulles[self.current].rect.centerx:
                     self.current += 1
@@ -110,13 +112,17 @@ class BulleManager:
 
     def handle_key(self, keys:pygame.event.Event, detection_zone: pygame.Rect):
         # test pour voir si on est a la fin des bulles
+        rep = None
         if (len(self.bulles) <= self.current):
-            return None
-        pre_has_responded = self.bulles[self.current].has_responded
-
-        self.bulles[self.current].handle_key(keys, detection_zone)
-        rep =  self.bulles[self.current].answer if not pre_has_responded else None
-        self.bulles[self.current].has_responded = True
+            return rep
+        
+        match self.bulles[self.current].handle_key(keys, detection_zone) :
+            case 0:
+                rep = True
+            case 1:
+                rep = False
+            case 2:
+                rep = None
         return rep
 
         
