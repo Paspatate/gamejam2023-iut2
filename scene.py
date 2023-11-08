@@ -55,7 +55,9 @@ class Scene:
         
         
         for button in buttons:
-            self.rectButtons.append([button[0].get_rect(topleft = (button[1],button[2])), button[3]])
+           
+            self.rectButtons.append([button[0].get_rect(topleft = (button[2],button[3])), button[4]])
+            button.append(0)
     
 
     def setScenes(self, scenes : {}):
@@ -70,11 +72,17 @@ class Scene:
         bulle_rep = None
         for event in event_list:
             if event.type == pygame.MOUSEBUTTONDOWN:
+                i = 0
+                while i < len(self.rectButtons):
+                    self.buttons[i][5] = 1
+                    i += 1
+                    
+            elif event.type == pygame.MOUSEBUTTONUP:
                 for rect in self.rectButtons:
                     if rect[0].collidepoint(pygame.mouse.get_pos()):
-                        self.name = rect[1]
-                        pygame.mixer.music.unload()
-                        self.scenes[rect[1]].loadM()
+                            self.name = rect[1]
+                            pygame.mixer.music.unload()
+                            self.scenes[rect[1]].loadM()
             elif event.type == pygame.KEYDOWN:
                 bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)        
 
@@ -98,7 +106,7 @@ class Scene:
         screen.blit(self.bg,(0,0))
         for button in self.buttons:
             
-            screen.blit(button[0],(button[1],button[2]))
+            screen.blit(button[button[5]],(button[2],button[3]))
             
             
         if len(self.dialogue) >0:

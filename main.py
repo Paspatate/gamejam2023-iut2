@@ -10,7 +10,7 @@ def main():
     WIN_WIDTH = 1024
     TARGET_FPS = 60
 
-    pygame.mixer.music.load("./data/music/music_bells.ogg","ogg")
+    
     
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
@@ -45,18 +45,18 @@ def main():
     bgM = pygame.image.load("data/backgrounds/BackgroundMenu.png").convert()
     bg = pygame.image.load("data/backgrounds/BackgroundLevelDefault.png").convert()
 
-    buttonP = pygame.image.load("data/buttons/playButtonInactive.png").convert_alpha()
+    buttonP = pygame.image.load("data/buttons/playButton.png").convert_alpha()
+    buttonP2 = pygame.image.load("data/buttons/playButtonUsed.png").convert_alpha()
 
     question_asm = pygame.image.load("data/questions/assembleur.png").convert_alpha()
-    bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
-    bulle_eleve = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
+   
     qasm_img = pygame.image.load("data/questions/assembleurR.png").convert_alpha()
    
     deltaTime = 0
     run = True
 
-    main = Scene("main", [],None, [[buttonP,400,250,"lvl1"]],bgM,[],"./data/music/music_bells.ogg")
-    lvl1 = Scene("lvl1",[[question_asm,qasm_img]],t_bulle_man,[],bg,[8],"./data/music/music_bells.ogg")
+    main = Scene("main", [],None, [[buttonP,buttonP2,400,250,"lvl1"]],bgM,[],"./data/music/audio_menu_loop.ogg")
+    lvl1 = Scene("lvl1",[[question_asm,qasm_img]],t_bulle_man,[],bg,[8],"./data/music/audio_bells.ogg")
 
     
         
