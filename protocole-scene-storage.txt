@@ -4,7 +4,7 @@ Start level
 "nom de la prochaine scene X","..."
 "chemmin dialogue 1" , "num_slice dialogue 1" , " chemin dialogue 2", "num_slice dialogue 2" ,"..." ,"..."
 Start button
-"chemin img button","x,y top left"
+"chemin img button","x","y","nom de la prochaine scene"
 "...","..."
 End button
 Start bulle
