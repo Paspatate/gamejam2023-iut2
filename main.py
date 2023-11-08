@@ -15,16 +15,22 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    t_note = Bulle(1000, 350, pygame.K_f)
+    t_note = Bulle(1669.00, 350, pygame.K_f)
     t_bulle_man = BulleManager()
     t_bulle_man.add(t_note)
-    t_bulle_man.add(Bulle(1400, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(1500, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(2419.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(3169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(3919.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(4669.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(5419.00, 350, pygame.K_f))    
+    t_bulle_man.add(Bulle(6169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
+    
     Bulle.init_surface()
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(topleft=(151.5, 334))
+    detec = detec_surf.get_rect(center=(201, 384))
 
     bg = pygame.image.load("data/backgrounds/BackgroundLevel.png").convert()
 
@@ -89,10 +95,16 @@ def main():
         
 
         pygame.display.update()
-        deltaTime = clock.tick(TARGET_FPS) / 1000
+
+        deltaTime = clock.get_time()
+        clock.tick_busy_loop(TARGET_FPS)
+        
+
+        
+
 
         pygame.display.set_caption(f"fps: {clock.get_fps()}")
-    
+        
     pygame.quit()
 
 if __name__ == "__main__":

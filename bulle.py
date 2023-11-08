@@ -1,7 +1,7 @@
 import pygame
 
 class Bulle:
-    NOTE_SPEED = 500
+    NOTE_SPEED = 0.5
     bulle_surface = {}
     def __init__(self, init_x, init_y, keycode):
         self.image = pygame.Surface((64,64))
