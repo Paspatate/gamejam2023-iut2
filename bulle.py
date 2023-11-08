@@ -19,19 +19,32 @@ class Bulle:
     @staticmethod
     def init_surface():
         Bulle.bulle_surface = {
-            pygame.K_f: pygame.transform.scale(pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),(64,64)),
-            pygame.K_j: pygame.transform.scale(pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),(64,64)),
-            pygame.K_TAB: pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),(64,64)),
-            pygame.K_SEMICOLON: pygame.transform.scale(pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),(64,64)),
-            pygame.K_RETURN: pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),(64,64)),
-            pygame.K_EQUALS: pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64)),
+            pygame.K_f: (pygame.transform.scale(pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/F KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_j: (pygame.transform.scale(pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/J KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_TAB: (pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_SEMICOLON: (pygame.transform.scale(pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/; KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_RETURN: (pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_EQUALS: (pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64)),
+                              pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEYused.png").convert_alpha(),(64,64))),
+
             "error": pygame.transform.scale(pygame.image.load("data/keybinds/red_cross.png").convert_alpha(),(64,64))
         }
     def draw(self, screen:pygame.Surface):
         if self.alive:
             #screen.blit(self.image, self.rect)
-            screen.blit(Bulle.bulle_surface[self.keycode], self.rect)
+            screen.blit(Bulle.bulle_surface[self.keycode][0], self.rect)
             if self.has_responded and not self.answer:
+                screen.blit(Bulle.bulle_surface[self.keycode][1], self.rect)
                 screen.blit(Bulle.bulle_surface["error"], self.rect)
         
 
