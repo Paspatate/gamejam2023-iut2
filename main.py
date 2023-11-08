@@ -15,26 +15,34 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    t_note = Bulle(1000, 350, pygame.K_f)
+    t_note = Bulle(1669.00, 350, pygame.K_f)
     t_bulle_man = BulleManager()
     t_bulle_man.add(t_note)
-    t_bulle_man.add(Bulle(1400, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(1500, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(2419.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(3169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(3919.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(4669.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(5419.00, 350, pygame.K_f))    
+    t_bulle_man.add(Bulle(6169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
+    
     Bulle.init_surface()
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(topleft=(151.5, 334))
+    detec = detec_surf.get_rect(center=(201, 384))
 
     bg = pygame.image.load("data/backgrounds/BackgroundLevel.png").convert()
 
     question_asm = pygame.image.load("data/questions/assembleur.png").convert_alpha()
     bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
+    bulle_rep = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
     qasm_img = pygame.image.load("data/questions/assembleurR.png").convert_alpha()
     list_qasm_img = []
     num_slice = 10
     width_slice = qasm_img.get_width()//num_slice
-
+    scaleX = 400 / num_slice
+    scaleY = 100
     for i in range(num_slice):
         list_qasm_img.append(qasm_img.subsurface(pygame.Rect(
                                                             i*width_slice,
@@ -70,19 +78,33 @@ def main():
         screen.blit(bg, (0,0))
 
         screen.blit(detec_surf, detec.topleft)
-        screen.blit(bulle_question, (360, 70))
-        
-        for i in range(len(list_qasm_img)-9):
-            screen.blit(list_qasm_img[i], (i*width_slice + 10, 10))
+        #screen.blit(bulle_question, (360, 70))
+        #screen.blit(question_asm,(370, 70))
+        screen.blit(bulle_rep, (260, 70))
+
+        for i in range(len(list_qasm_img)):
+            screen.blit(list_qasm_img[i], (i*width_slice + 100, 568))
+
+        for i in range(len(list_qasm_img)):
+            screen.blit(pygame.transform.scale(list_qasm_img[i],(scaleX,scaleY)), (i*scaleX + 280, 90))
 
         
+
         t_bulle_man.draw(screen)
+
         
 
         pygame.display.update()
-        deltaTime = clock.tick(TARGET_FPS) / 1000
+
+        deltaTime = clock.get_time()
+        clock.tick_busy_loop(TARGET_FPS)
+        
+
+        
+
+
         pygame.display.set_caption(f"fps: {clock.get_fps()}")
-    
+        
     pygame.quit()
 
 if __name__ == "__main__":

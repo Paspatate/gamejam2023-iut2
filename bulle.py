@@ -1,7 +1,7 @@
 import pygame
 
 class Bulle:
-    NOTE_SPEED = 500
+    NOTE_SPEED = 0.5
     bulle_surface = {}
     def __init__(self, init_x, init_y, keycode):
         self.image = pygame.Surface((64,64))
@@ -12,6 +12,7 @@ class Bulle:
         self.keycode = keycode
         self.alive = True
         self.answer = None
+        self.pos = pygame.Vector2(init_x,init_y)
 
     @staticmethod
     def init_surface():
@@ -30,7 +31,9 @@ class Bulle:
             screen.blit(Bulle.bulle_surface[self.keycode], self.rect)
 
     def update(self, dt:float):
-        self.rect.x += Bulle.NOTE_SPEED * -1 * dt
+        #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
+        self.pos.x += Bulle.NOTE_SPEED *-1 * dt
+        self.rect.x = self.pos.x
 
     def handle_key(self, keys, detection_zone: pygame.Rect) -> bool:
         if keys == self.keycode and self.alive:
