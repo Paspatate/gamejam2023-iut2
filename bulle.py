@@ -12,7 +12,7 @@ class Bulle:
         self.keycode = keycode
         self.alive = True
         self.answer = None
-    
+
     @staticmethod
     def init_surface():
         Bulle.bulle_surface = {
@@ -22,15 +22,16 @@ class Bulle:
             pygame.K_SEMICOLON: pygame.transform.scale(pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),(64,64)),
             pygame.K_RETURN: pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),(64,64)),
             pygame.K_EQUALS: pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64))
-            
+
         }
     def draw(self, screen:pygame.Surface):
         if self.alive:
+            #screen.blit(self.image, self.rect)
             screen.blit(Bulle.bulle_surface[self.keycode], self.rect)
 
     def update(self, dt:float):
         self.rect.x += Bulle.NOTE_SPEED * -1 * dt
-    
+
     def handle_key(self, keys, detection_zone: pygame.Rect) -> bool:
         if keys == self.keycode and self.alive:
             self.kill()
@@ -39,7 +40,7 @@ class Bulle:
         return False
     def kill(self):
         self.alive = False
-    
+
     def __str__(self):
         return f"alive: {self.alive}"
 
@@ -48,7 +49,7 @@ class BulleManager:
     def __init__(self):
         self.bulles = []
         self.current = 0
-    
+
     def add(self, bulle: Bulle):
       self.bulles.append(bulle)
 
@@ -64,7 +65,7 @@ class BulleManager:
         # test pour voir si on est a la fin des bulles
         if (len(self.bulles) <= self.current):
             return
-        
+
         key_pressed = False
         # test pour voir si la bulle actuelle est passé apprès la zone de détéction
         key_pressed = self.bulles[self.current].handle_key(keys, detection_zone)
