@@ -1,0 +1,35 @@
+Start level
+main
+data/backgrounds/BackgroundMenu.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/playButton.png,data/buttons/playButtonUsed.png,400,250,lvl1
+Start bulle
+End bulle
+
+Start level
+lvl1
+data/backgrounds/BackgroundLevelDefault.png
+./data/music/audio_bells.ogg
+8
+Start dialogue
+data/questions/assembleur.png,data/questions/assembleurR.png
+Start button
+Start bulle
+2419.00,f
+3169.00,f
+3919.00,j
+4669.00,f
+5419.00,f
+6169.00,j
+6919.00,j
+7669.00,j
+8419.00,f
+9169.00,j
+9919.00,j
+10669.00,f
+11419.00,f
+12169.00,j
+12919.00,f
+End bulle
