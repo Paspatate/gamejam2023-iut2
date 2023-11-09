@@ -10,17 +10,21 @@ class Scene:
     detec = None
     sErreur = None
     sCorrect = None
+    vol = None
 
 
     @staticmethod
-    def init_surface():
+    def init_ressource(volume:float):
         Scene.erreur = pygame.image.load("data/questions/erreur.png").convert_alpha()
         Scene.bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
         Scene.bulle_rep = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
         Scene.detec = pygame.Rect((151, 334), (100, 100))
+        Scene.vol = volume
         Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
+        Scene.sCorrect.set_volume(volume)
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
-        Scene.sErreur.set_volume(0.5)
+        Scene.sErreur.set_volume(0.5 * volume)
+
 
 
 
@@ -92,6 +96,7 @@ class Scene:
 
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
+        pygame.mixer.music.set_volume(Scene.vol)
         pygame.mixer.music.play()
 
 

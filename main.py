@@ -4,6 +4,13 @@ from bulle import Bulle, BulleManager
 from scene import Scene
 
 def main():
+    volume = 1
+    try:
+        volume = float(sys.argv[1])
+    except:
+        print("volume set to 1 (default)")
+        volume = 1
+
     pygame.init()
 
     WIN_HEIGHT = 768
@@ -16,7 +23,7 @@ def main():
     touche = {"f" : pygame.K_f, "j" : pygame.K_j, "s" : pygame.K_s, "d" : pygame.K_d, "k" : pygame.K_k, "l" : pygame.K_l}
 
     Bulle.init_surface()
-    Scene.init_surface()
+    Scene.init_ressource(volume)
 
     font = pygame.font.SysFont(None, 24)
 
