@@ -10,6 +10,7 @@ class Scene:
     detec = None
     sErreur = None
     sCorrect = None
+    font = None
 
 
     @staticmethod
@@ -21,6 +22,7 @@ class Scene:
         Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
         Scene.sErreur.set_volume(0.5)
+        Scene.font = pygame.font.SysFont(None, 24)
 
 
 
@@ -87,12 +89,14 @@ class Scene:
             self.bScore = self.nScores
         
 
+    def setScore(self, score):
+        self.nScores == score
 
 
 
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(loops=-1)
 
 
     def draw(self, screen , event_list : pygame.event, deltaTime):
@@ -136,9 +140,10 @@ class Scene:
 
                     if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
                         self.scores = self.bullManager.calculeScore()
-                        self.name = "selection"
+                        self.name = "score"
                         pygame.mixer.music.unload()
-                        self.scenes["selection"].loadM()
+                        self.scenes["score"].loadM()
+                        self.scenes["score"].setScore(self.nScore)
                         self.reset()
                         
             if not self.last_exo:
@@ -180,5 +185,9 @@ class Scene:
             screen.blit(img[0],(img[1],img[2]))
 
 
-        for note in self.scores:
-            screen.blit(note[0],(note[1],note[2]))
+        if self.name == "score":
+            screen.blit(Scene.font.render(f"{self.nScores} / 20", True , "Dark"), (800,400))
+
+        if self.name == "selection":
+            screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (800,400))
+            screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (800,800))
