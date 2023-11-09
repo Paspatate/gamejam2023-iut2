@@ -52,10 +52,10 @@ class Bulle:
                 screen.blit(Bulle.bulle_surface[self.keycode][1], self.rect)
                 screen.blit(Bulle.bulle_surface["error"], self.rect)
         elif self.has_responded and self.answer and self.frame < 5:
-            screen.blit(Bulle.bulle_surface["correct"][0],(130,320))
+            screen.blit(Bulle.bulle_surface["correct"][0],(135,320))
             self.frame += 1
         elif self.has_responded and self.answer and self.frame < 10:
-            screen.blit(Bulle.bulle_surface["correct"][1],(130,320))
+            screen.blit(Bulle.bulle_surface["correct"][1],(135,320))
             self.frame += 1
             
 
