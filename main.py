@@ -71,7 +71,8 @@ def main():
             while lignes[j] != "End img\n":
                 current_img = lignes[j].rstrip("\n").split(",")
     
-                current_Scene.imgs.append([pygame.image.load(current_img[0]).convert_alpha(), pygame.image.load(current_img[1]).convert_alpha()])
+                current_Scene.imgs.append([pygame.transform.scale(pygame.image.load(current_img[0]).convert_alpha(),(int(current_img[3]), int(current_img[4]))), int(current_img[1]), int(current_img[2])])
+                j += 1
 
             scenes[current_Scene.name] = current_Scene
             i = j
@@ -110,12 +111,13 @@ def main():
         
 
         pygame.display.update()
-
+        
         deltaTime = clock.get_time()
         clock.tick(TARGET_FPS)
         
 
         pygame.display.set_caption(f"fps: {clock.get_fps()}")
+
         
     pygame.quit()
 

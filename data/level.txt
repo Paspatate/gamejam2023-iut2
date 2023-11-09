@@ -116,6 +116,7 @@ Start bulle
 39939.00,k
 40219.00,s
 Start img
+./data/image/cerveau.png,740,290,190,190
 End img
 
 
@@ -168,4 +169,5 @@ Start bulle
 14759.00,d
 15079.00,f
 Start img
+./data/image/cerveau.png,740,290,190,190
 End img
