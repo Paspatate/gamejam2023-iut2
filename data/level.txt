@@ -122,7 +122,7 @@ data/backgrounds/BackgroundLevelR1.07.png
 ./data/music/audio_drill.ogg
 39
 Start dialogue
-data/questions/assembleur.png,data/questions/assembleurR.png
+data/questions/maths.png,data/questions/mathsR.png
 Start button
 Start bulle
 1899.00,f
