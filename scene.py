@@ -103,7 +103,7 @@ class Scene:
                 i = 0
                 while i < len(self.rectButtons):
                     if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
-                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main":
+                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main" and (self.name == "main" or self.name == "selection"):
                             pygame.mixer.music.unload()
                             self.scenes[self.rectButtons[i][1]].loadM()
                         self.name = self.rectButtons[i][1]
@@ -132,14 +132,16 @@ class Scene:
             if not last_exo:
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
+                    Scene.sCorrect.play()
                 elif bulle_rep == False:
 
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
+                    Scene.sErreur.play()
                 elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
                     self.bullManager.bulles[self.bullManager.current-1].has_responded = True
 
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
-
+                    Scene.sErreur.play()
             self.bullManager.update(deltaTime, Scene.detec)
 
 
