@@ -111,6 +111,8 @@ class Scene:
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 self.numExo += 1
                 self.rep.append([])
+            
+            if bulle_rep:
                 self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                 Scene.sErreur.play()
             elif bulle_rep == False:
