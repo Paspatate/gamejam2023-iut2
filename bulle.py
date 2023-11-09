@@ -92,7 +92,7 @@ class Bulle:
     def reset(self):
         self.rect.x = self.init_x
         self.pos.x = self.rect.x
-        self.alive = True
+        self.alive = False
         self.answer = False
         self.has_responded = False
         self.can_interact = True

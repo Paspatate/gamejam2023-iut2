@@ -152,8 +152,8 @@ data/backgrounds/BackgroundLevelR1.07.png
 97
 Start dialogue
 data/questions/maths.png,data/questions/mathsR.png
-data/questions/maths.png,data/questions/mathsR.png
-data/questions/maths.png,data/questions/mathsR.png
+data/questions/maths2.png,data/questions/maths2R.png
+data/questions/maths3.png,data/questions/maths3R.png
 Start button
 Start bulle
 1899.00,f
