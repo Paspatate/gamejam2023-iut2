@@ -13,7 +13,7 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "R" : pygame.K_RETURN, "T" : pygame.K_TAB, "E" : pygame.K_EQUALS, "PV" : pygame.K_SEMICOLON}
+    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "s" : pygame.K_s, "d" : pygame.K_d, "k" : pygame.K_k, "l" : pygame.K_l}
 
     Bulle.init_surface()
     Scene.init_surface()
