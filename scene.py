@@ -166,18 +166,18 @@ class Scene:
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
-                    print("hit")
+                    
                 elif bulle_rep == False:
 
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current  - sum_to(self.exo, self.numExo)])
                     Scene.sErreur.play()
-                    print("not hit")
+                    
                 elif (not self.bulleManager.bulles[self.bulleManager.current-1].has_responded and not self.bulleManager.bulles[self.bulleManager.current-1].can_interact):
                     self.bulleManager.bulles[self.bulleManager.current-1].has_responded = True
                     if self.bulleManager.current-1 >= sum_to(self.exo, self.numExo):
                         self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)-1])
                     Scene.sErreur.play()
-                    print("not hit")
+                    
             self.bulleManager.update(deltaTime, Scene.detec)
 
 
@@ -211,3 +211,8 @@ class Scene:
                 screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (65,480))
             if self.scenes['R1.07'].bScore != None:
                 screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (380,480))
+
+
+        pygame.draw.rect(screen, "red",Scene.detec,width=2)
+        pygame.draw.circle(screen, "blue",Scene.detec.center,2)
+        

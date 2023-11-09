@@ -1,5 +1,6 @@
 import pygame
 
+
 class Bulle:
     NOTE_SPEED = 0.5
     bulle_surface = {}
@@ -16,7 +17,7 @@ class Bulle:
         self.answer = False
         self.has_responded = False
         self.pos = pygame.Vector2(init_x,self.rect.y)
-        self.can_interact = True
+        self.can_interact = False
         self.frame = 0
 
     @staticmethod
@@ -46,6 +47,7 @@ class Bulle:
                          pygame.transform.scale(pygame.image.load("data/fx/Perfect.png").convert_alpha(),(128,128)))
         }
     def draw(self, screen:pygame.Surface):
+        
         if self.alive:
             #screen.blit(self.image, self.rect)
             screen.blit(Bulle.bulle_surface[self.keycode][0], self.rect)
@@ -58,31 +60,43 @@ class Bulle:
         elif self.has_responded and self.answer and self.frame < 10:
             screen.blit(Bulle.bulle_surface["correct"][1],(135,320))
             self.frame += 1
-            
+        pygame.draw.circle(screen, "red", self.rect.center,2)
 
     def update(self, dt:float):
+        
         #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
         self.pos.x += Bulle.NOTE_SPEED *-1 * dt
         self.rect.x = self.pos.x
         if self.pos.x > 740 and self.pos.x < 800:
             self.alive = True
+            self.can_interact = True
         # if not self.answer:
         #     self.
+        if self.rect.centerx < 105:
+            self.stop_interaction()
 
-        if self.rect.centerx <= 151 or self.answer:
+        if self.rect.centerx < 100 or self.answer:
             self.kill()
 
+        
+
     def handle_key(self, keys, detection_zone: pygame.Rect) -> int:
+        
         self.has_responded = True
-        if self.answer == False and not self.can_interact:
-            return 1
-        elif self.can_interact:
+        #print(id(self),"    ",self.rect.centerx < 151, " kill ", detection_zone.collidepoint(self.rect.center))
+        
+        if self.can_interact:
+
             
             if (keys == self.keycode and detection_zone.collidepoint(self.rect.center)):
                 self.answer = True
+                
                 return 0
             else:
+                #print("answer : " , self.answer, " can_interact : ",self.can_interact," alive : ",self.alive," has_responded : ",self.has_responded)
                 return 1
+        
+        
         return 2
     
     def kill(self):
@@ -133,6 +147,8 @@ class BulleManager:
         # réponse just
         for bulle in self.bulles:
             bulle.update(dt)
+        
+        
 
     def handle_key(self, keys:pygame.event.Event, detection_zone: pygame.Rect):
         # test pour voir si on est a la fin des bulles
@@ -153,6 +169,7 @@ class BulleManager:
     def draw(self, screen: pygame.Surface):
         for bulle in self.bulles:
             bulle.draw(screen)
+            
     
     def reset(self):
         self.current = 0

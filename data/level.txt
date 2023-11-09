@@ -206,7 +206,7 @@ data/backgrounds/BackgroundLevelR1.07.png
 ./data/music/audio_drill.ogg
 39
 68
-97
+98
 Start dialogue
 data/questions/maths.png,data/questions/mathsR.png
 data/questions/maths2.png,data/questions/maths2R.png

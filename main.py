@@ -32,7 +32,7 @@ def main():
 
     lignes = txt.readlines()
     scenes = {}
-
+  
     i = 0
 
     while i < len(lignes):
@@ -74,7 +74,7 @@ def main():
                 
                 current_Scene.bulleManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
                 j +=1
-            
+           
             j +=1
             while lignes[j] != "End img\n":
                 current_img = lignes[j].rstrip("\n").split(",")
@@ -129,7 +129,15 @@ def main():
         for key in scenes.keys():
             if key != scenes[key].name:
                 scenes[key].name = key
-        
+
+        if scenes[currentScene].bulleManager != None:
+                #print("first")
+                a = 0
+                for bulle in current_Scene.bulleManager.bulles:
+                    if bulle.has_responded == True:
+                        pass
+                        #print(a)
+                    a += 1
 
         pygame.display.update()
         
