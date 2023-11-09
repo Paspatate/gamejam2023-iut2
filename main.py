@@ -5,10 +5,10 @@ from scene import Scene
 from utils import clamp
 
 def main():
-    volume = 100
+    volume = 1
     try:
         volume = float(sys.argv[1])/100
-        print(f"Volume set to {clamp(volume*100, 0, 100)}")
+        print(f"Volume set to {clamp(volume*100, 0, 100)}%")
     except:
         print("Volume set to 100% (default)")
 
