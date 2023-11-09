@@ -8,6 +8,9 @@ class Scene:
     bulle_question = None
     bulle_rep = None
     detec = None
+    sErreur = None
+    sCorrect = None
+   
 
     @staticmethod
     def init_surface():
@@ -15,7 +18,10 @@ class Scene:
         Scene.bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
         Scene.bulle_rep = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
         Scene.detec = pygame.Rect((151, 334), (100, 100))
-
+        Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
+        Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
+        Scene.sErreur.set_volume(0.5)
+        Scene.sErreur.set_volume(1)
 
 
 
@@ -77,6 +83,7 @@ class Scene:
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
         pygame.mixer.music.play()
+        
 
     def draw(self, screen , event_list : pygame.event, deltaTime):
         bulle_rep = None
@@ -104,19 +111,17 @@ class Scene:
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 self.numExo += 1
                 self.rep.append([])
-            print("sum_to", sum_to(self.exo, self.numExo))
-            print("partie de exo", self.bullManager.current - sum_to(self.exo, self.numExo))
-            print("exo", self.numExo)
-            print("current", self.bullManager.current)
-            if bulle_rep:
                 self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
+                Scene.sErreur.play()
             elif bulle_rep == False:
                 
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
+                Scene.sErreur.play()
             elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
                 self.bullManager.bulles[self.bullManager.current-1].has_responded = True
                 
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+                Scene.sErreur.play()
 
             self.bullManager.update(deltaTime, Scene.detec)
         
