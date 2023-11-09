@@ -40,10 +40,22 @@ def main():
     t_bulle_man.add(Bulle(17044.00, 350, pygame.K_RETURN))
     t_bulle_man.add(Bulle(17419.00, 350, pygame.K_RETURN))
     t_bulle_man.add(Bulle(18169.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_RETURN))
-    t_bulle_man.add(Bulle(18169.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(18919.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(19669.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(19854.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(20419.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(20884.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(21169.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(21919.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(22669.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(23044.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(23419.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(24169.00, 350, pygame.K_j))
+    t_bulle_man.add(Bulle(24919.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(25669.00, 350, pygame.K_f))
+    t_bulle_man.add(Bulle(25854.00, 350, pygame.K_RETURN))
+    t_bulle_man.add(Bulle(26419.00, 350, pygame.K_RETURN))
+    
     
     #t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
     
@@ -68,7 +80,7 @@ def main():
     run = True
 
     main = Scene("main", [],None, [[buttonP,buttonP2,400,250,"lvl1"]],bgM,[],"./data/music/audio_menu_loop.ogg")
-    lvl1 = Scene("lvl1",[[question_asm,qasm_img]],t_bulle_man,[],bg,[8],"./data/music/audio_bells.ogg")
+    lvl1 = Scene("lvl1",[[question_asm,qasm_img]],t_bulle_man,[],bg,[37],"./data/music/audio_bells.ogg")
 
     
         
