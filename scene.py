@@ -166,15 +166,18 @@ class Scene:
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
+                    print("hit")
                 elif bulle_rep == False:
 
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current  - sum_to(self.exo, self.numExo)])
                     Scene.sErreur.play()
+                    print("not hit")
                 elif (not self.bulleManager.bulles[self.bulleManager.current-1].has_responded and not self.bulleManager.bulles[self.bulleManager.current-1].can_interact):
                     self.bulleManager.bulles[self.bulleManager.current-1].has_responded = True
                     if self.bulleManager.current-1 >= sum_to(self.exo, self.numExo):
                         self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)-1])
                     Scene.sErreur.play()
+                    print("not hit")
             self.bulleManager.update(deltaTime, Scene.detec)
 
 
