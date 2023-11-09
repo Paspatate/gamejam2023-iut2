@@ -178,7 +178,3 @@ class Scene:
 
         for img in self.imgs:
             screen.blit(img[0],(img[1],img[2]))
-
-
-        for note in self.scores:
-            screen.blit(note[0],(note[1],note[2]))
