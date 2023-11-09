@@ -4,13 +4,25 @@ data/backgrounds/BackgroundMenu.png
 ./data/music/audio_menu_loop.ogg
 Start dialogue
 Start button
-data/buttons/playButton.png,data/buttons/playButtonUsed.png,400,250,lvl1
+data/buttons/playButton.png,data/buttons/playButtonUsed.png,342,625,selection
 Start bulle
 End bulle
 
 Start level
-lvl1
-data/backgrounds/BackgroundLevelDefault.png
+selection
+data/backgrounds/BackgroundSelection.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/selectionLevels/R1.04.png,data/selectionLevels/R1.04.png,68,288,R1.04
+data/selectionLevels/R1.07.png,data/selectionLevels/R1.07.png,384,288,R1.07
+data/selectionLevels/matiereVerrouillee.png,data/selectionLevels/matiereVerrouillee.png,700,288,selection
+Start bulle
+End bulle
+
+Start level
+R1.04
+data/backgrounds/BackgroundlLevelR1.04.png
 ./data/music/audio_bells.ogg
 16
 21
@@ -55,4 +67,31 @@ Start bulle
 25669.00,f
 25854.00,R
 26419.00,R
+End bulle
+
+
+Start level
+R1.07
+data/backgrounds/BackgroundLevelR1.07.png
+./data/music/audio_drill.ogg
+8
+Start dialogue
+data/questions/assembleur.png,data/questions/assembleurR.png
+Start button
+Start bulle
+2419.00,f
+3169.00,f
+3919.00,j
+4669.00,f
+5419.00,f
+6169.00,j
+6919.00,j
+7669.00,j
+8419.00,f
+9169.00,j
+9919.00,j
+10669.00,f
+11419.00,f
+12169.00,j
+12919.00,f
 End bulle
