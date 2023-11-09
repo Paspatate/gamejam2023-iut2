@@ -89,7 +89,9 @@ class Scene:
         self.rep = [[]]
         self.bullManager.reset()
         self.last_exo = False
-        if self.nScore > self.bScore:
+        if self.bScore == None:
+            self.bScore = self.nScore
+        elif self.nScore > self.bScore:
             self.bScore = self.nScore
         
 
