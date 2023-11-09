@@ -1,4 +1,6 @@
 from bulle import Bulle, BulleManager
+from utils import sum_to
+
 import pygame
 
 class Scene:
@@ -98,16 +100,23 @@ class Scene:
 
                 
 
-        if self.bullManager != None and len(self.dialogue) >0:
+        if self.bullManager != None and len(self.dialogue) > 0:
+            if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
+                self.numExo += 1
+                self.rep.append([])
+            print("sum_to", sum_to(self.exo, self.numExo))
+            print("partie de exo", self.bullManager.current - sum_to(self.exo, self.numExo))
+            print("exo", self.numExo)
+            print("current", self.bullManager.current)
             if bulle_rep:
-                self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current])
+                self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
             elif bulle_rep == False:
                 
-                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current])
+                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
             elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
                 self.bullManager.bulles[self.bullManager.current-1].has_responded = True
                 
-                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current-1])
+                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
 
             self.bullManager.update(deltaTime, Scene.detec)
         
