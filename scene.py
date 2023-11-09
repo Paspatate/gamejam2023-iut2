@@ -44,8 +44,6 @@ class Scene:
             
             self.listJ.append([])
             self.listF.append([])
-            print(self.dialogue)
-            print(i)
             width_slice = self.dialogue[i][1].get_width()//self.exo[i]
             
             for j in range(self.exo[i]):
@@ -97,7 +95,10 @@ class Scene:
                             self.scenes[rect[1]].loadM()
             elif event.type == pygame.KEYDOWN:
                 if self.bullManager != None:
-                    bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)        
+                    bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)
+
+
+                
 
         if self.bullManager != None and len(self.dialogue) > 0:
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
@@ -120,7 +121,7 @@ class Scene:
             self.bullManager.update(deltaTime, Scene.detec)
         
 
-
+        
         
         
 

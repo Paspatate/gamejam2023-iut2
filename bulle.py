@@ -16,6 +16,7 @@ class Bulle:
         self.has_responded = False
         self.pos = pygame.Vector2(init_x,self.rect.y)
         self.can_interact = True
+        self.frame = 0
 
     @staticmethod
     def init_surface():
@@ -38,7 +39,10 @@ class Bulle:
             pygame.K_EQUALS: (pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64)),
                               pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEYused.png").convert_alpha(),(64,64))),
 
-            "error": pygame.transform.scale(pygame.image.load("data/keybinds/red_cross.png").convert_alpha(),(64,64))
+            "error": pygame.transform.scale(pygame.image.load("data/keybinds/red_cross.png").convert_alpha(),(64,64)),
+
+            "correct" : (pygame.transform.scale(pygame.image.load("data/fx/Perfect2.png").convert_alpha(),(128,128)),
+                         pygame.transform.scale(pygame.image.load("data/fx/Perfect.png").convert_alpha(),(128,128)))
         }
     def draw(self, screen:pygame.Surface):
         if self.alive:
@@ -47,8 +51,13 @@ class Bulle:
             if self.has_responded and not self.answer:
                 screen.blit(Bulle.bulle_surface[self.keycode][1], self.rect)
                 screen.blit(Bulle.bulle_surface["error"], self.rect)
-        
-
+        elif self.has_responded and self.answer and self.frame < 5:
+            screen.blit(Bulle.bulle_surface["correct"][0],(130,320))
+            self.frame += 1
+        elif self.has_responded and self.answer and self.frame < 10:
+            screen.blit(Bulle.bulle_surface["correct"][1],(130,320))
+            self.frame += 1
+            
 
     def update(self, dt:float):
         #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
@@ -85,7 +94,6 @@ class BulleManager:
         self.current = 0
 
     def add(self, bulle: Bulle):
-      print(bulle.keycode)
       self.bulles.append(bulle)
 
     def update(self, dt:float, detection_zone: pygame.Rect):
