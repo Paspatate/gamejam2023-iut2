@@ -5,8 +5,8 @@ Start level
 "nb bulles exo1"
 "..."
 Start dialogue
-"chemmin dialogue 1" 
-" chemin dialogue 2"
+"chemmin question 1" ," chemin rep 1"
+"chemin question 2","chemin rep 2"
 "..." ,"..."
 Start button
 "chemin img button","chemin 2eme img","x","y","nom de la prochaine scene"

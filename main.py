@@ -75,10 +75,6 @@ def main():
         
     txt.close()
 
-    
-    
-    
-
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
     detec = detec_surf.get_rect(center=(201, 384))
@@ -95,11 +91,6 @@ def main():
    
     deltaTime = 0
     run = True
-
-    
-    
-        
-
     
 
     for scene in scenes.keys():
