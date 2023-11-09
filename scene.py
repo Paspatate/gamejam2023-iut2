@@ -133,15 +133,18 @@ class Scene:
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
+                    print("bulle_rep True")
                 elif bulle_rep == False:
-
+                    print("bulle_rep False")
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
                     Scene.sErreur.play()
                 elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
+                    print("avant dernier pas utilisé")
                     self.bullManager.bulles[self.bullManager.current-1].has_responded = True
-
-                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+                    if self.bullManager.current-1 >= sum_to(self.exo, self.numExo):
+                        self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
                     Scene.sErreur.play()
+            
             self.bullManager.update(deltaTime, Scene.detec)
 
 
