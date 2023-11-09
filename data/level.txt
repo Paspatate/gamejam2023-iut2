@@ -31,7 +31,8 @@ Start dialogue
 Start button
 data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,10,650,selection
 Start bulle
-End bulle
+Start img
+End img
 
 Start level
 R1.04
