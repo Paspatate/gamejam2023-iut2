@@ -205,6 +205,6 @@ class Scene:
 
         if self.name == "selection":
             if self.scenes['R1.04'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (130,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (65,480))
             if self.scenes['R1.07'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (430,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (380,480))
