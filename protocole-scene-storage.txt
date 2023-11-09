@@ -14,5 +14,7 @@ Start button
 Start bulle
 "x de la bulle","key de la bulle"
 "...","..."
-End bulle
+Start img
+"chemin img","x","y"
+End img
 

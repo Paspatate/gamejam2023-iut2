@@ -41,6 +41,9 @@ class Scene:
         self.listJ = []
         self.listF = []
         self.last_exo = False
+        self.nScores = 0
+        self.bScore = 0
+        self.imgs = []
 
 
     def initDialogue(self):
@@ -80,6 +83,10 @@ class Scene:
         self.rep = [[]]
         self.bullManager.reset()
         self.last_exo = False
+        if self.nScores > self.bScore:
+            self.bScore = self.nScores
+        
+
 
 
 
@@ -126,8 +133,9 @@ class Scene:
                     self.rep.append([])
                 if self.numExo == len(self.exo):
                     self.last_exo = True
-                   
+
                     if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
+                        self.scores = self.bullManager.calculeScore()
                         self.name = "selection"
                         pygame.mixer.music.unload()
                         self.scenes["selection"].loadM()
@@ -167,3 +175,10 @@ class Scene:
 
         if self.bullManager != None:
             self.bullManager.draw(screen)
+
+        for img in self.imgs:
+            screen.blit(img[0],(img[1],img[2]))
+
+
+        for note in self.scores:
+            screen.blit(note[0],(note[1],note[2]))
