@@ -22,23 +22,23 @@ class Bulle:
     @staticmethod
     def init_surface():
         Bulle.bulle_surface = {
+            pygame.K_s: (pygame.transform.scale(pygame.image.load("data/keybinds/S KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/S KEYused.png").convert_alpha(),(64,64))),
+
+            pygame.K_d: (pygame.transform.scale(pygame.image.load("data/keybinds/D KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/D KEYused.png").convert_alpha(),(64,64))),
+            
             pygame.K_f: (pygame.transform.scale(pygame.image.load("data/keybinds/F KEY.png").convert_alpha(),(64,64)),
                             pygame.transform.scale(pygame.image.load("data/keybinds/F KEYused.png").convert_alpha(),(64,64))),
 
             pygame.K_j: (pygame.transform.scale(pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),(64,64)),
                             pygame.transform.scale(pygame.image.load("data/keybinds/J KEYused.png").convert_alpha(),(64,64))),
 
-            pygame.K_TAB: (pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEY.png").convert_alpha(),(64,64)),
-                            pygame.transform.scale(pygame.image.load("data/keybinds/TAB KEYused.png").convert_alpha(),(64,64))),
+            pygame.K_k: (pygame.transform.scale(pygame.image.load("data/keybinds/K KEY.png").convert_alpha(),(64,64)),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/K KEYused.png").convert_alpha(),(64,64))),
 
-            pygame.K_SEMICOLON: (pygame.transform.scale(pygame.image.load("data/keybinds/; KEY.png").convert_alpha(),(64,64)),
-                            pygame.transform.scale(pygame.image.load("data/keybinds/; KEYused.png").convert_alpha(),(64,64))),
-
-            pygame.K_RETURN: (pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEY.png").convert_alpha(),(64,64)),
-                            pygame.transform.scale(pygame.image.load("data/keybinds/ENTER KEYused.png").convert_alpha(),(64,64))),
-
-            pygame.K_EQUALS: (pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEY.png").convert_alpha(),(64,64)),
-                              pygame.transform.scale(pygame.image.load("data/keybinds/EQUAL KEYused.png").convert_alpha(),(64,64))),
+            pygame.K_l: (pygame.transform.scale(pygame.image.load("data/keybinds/L KEY.png").convert_alpha(),(64,64)),
+                              pygame.transform.scale(pygame.image.load("data/keybinds/L KEYused.png").convert_alpha(),(64,64))),
 
             "error": pygame.transform.scale(pygame.image.load("data/keybinds/red_cross.png").convert_alpha(),(64,64)),
 
