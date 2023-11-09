@@ -13,10 +13,12 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    touche = {"s" : pygame.K_s, "d" : pygame.K_d, "l" : pygame.K_l, "k" : pygame.K_k}
+    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "s" : pygame.K_s, "d" : pygame.K_d, "k" : pygame.K_k, "l" : pygame.K_l}
 
     Bulle.init_surface()
     Scene.init_surface()
+
+    font = pygame.font.SysFont(None, 24)
 
     txt = open("data/level.txt", "r")
 
@@ -57,34 +59,28 @@ def main():
             j += 1
             
             
-            while lignes[j] != "End bulle\n":
+            while lignes[j] != "Start img\n":
                 if current_Scene.bullManager == None:
                     current_Scene.bullManager = BulleManager()
                 current_Bulle = lignes[j].rstrip("\n").split(",")
                 
                 current_Scene.bullManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
                 j +=1
+            
+            j +=1
+            while lignes[j] != "End img\n":
+                current_img = lignes[j].rstrip("\n").split(",")
+    
+                current_Scene.imgs.append([pygame.image.load(current_img[0]).convert_alpha(), pygame.image.load(current_img[1]).convert_alpha()])
+
             scenes[current_Scene.name] = current_Scene
-        
             i = j
            
         i +=1
         
     txt.close()
 
-    detec_surf = pygame.Surface((100, 100))
-    detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(center=(201, 384))
     
-    bgM = pygame.image.load("data/backgrounds/BackgroundMenu.png").convert()
-    bg = pygame.image.load("data/backgrounds/BackgroundLevelDefault.png").convert()
-
-    buttonP = pygame.image.load("data/buttons/playButton.png").convert_alpha()
-    buttonP2 = pygame.image.load("data/buttons/playButtonUsed.png").convert_alpha()
-
-    question_asm = pygame.image.load("data/questions/assembleur.png").convert_alpha()
-   
-    qasm_img = pygame.image.load("data/questions/assembleurR.png").convert_alpha()
    
     deltaTime = 0
     run = True

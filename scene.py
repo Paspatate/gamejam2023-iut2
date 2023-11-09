@@ -41,6 +41,8 @@ class Scene:
         self.listJ = []
         self.listF = []
         self.last_exo = False
+        self.scores = []
+        self.imgs = []
 
 
     def initDialogue(self):
@@ -170,3 +172,10 @@ class Scene:
 
         if self.bullManager != None:
             self.bullManager.draw(screen)
+
+        for img in self.imgs:
+            screen.blit(img[0],(img[1],img[2]))
+
+
+        for note in self.scores:
+            screen.blit(note[0],(note[1],note[2]))
