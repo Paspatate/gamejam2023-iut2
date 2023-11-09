@@ -10,12 +10,10 @@ def main():
     WIN_WIDTH = 1024
     TARGET_FPS = 60
 
-    
-    
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "R" : pygame.K_RETURN}
+    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "R" : pygame.K_RETURN, "T" : pygame.K_TAB, "E" : pygame.K_EQUALS}
 
     Bulle.init_surface()
     Scene.init_surface()
@@ -25,7 +23,6 @@ def main():
     lignes = txt.readlines()
     scenes = {}
 
-    
     i = 0
 
     while i < len(lignes):
@@ -99,7 +96,6 @@ def main():
     currentScene = scenes["main"].name
 
 
-
     scenes["main"].loadM()
     while run:
         # managment des events
@@ -122,9 +118,6 @@ def main():
         deltaTime = clock.get_time()
         clock.tick(TARGET_FPS)
         
-
-        
-
 
         pygame.display.set_caption(f"fps: {clock.get_fps()}")
         

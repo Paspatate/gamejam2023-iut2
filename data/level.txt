@@ -24,7 +24,7 @@ Start level
 R1.04
 data/backgrounds/BackgroundlLevelR1.04.png
 ./data/music/audio_bells.ogg
-16
+60
 21
 Start dialogue
 data/questions/assembleur.png,data/questions/assembleurR.png
@@ -67,6 +67,16 @@ Start bulle
 25669.00,f
 25854.00,R
 26419.00,R
+28669.00,T
+29134.00,E
+29419.00,R
+30354.00,T
+30544.00,R
+30634.00,E
+30919.00,R
+31104.00,j
+31384.00,E
+31669.00,T
 End bulle
 
 
