@@ -18,6 +18,8 @@ def main():
     Bulle.init_surface()
     Scene.init_surface()
 
+    font = pygame.font.SysFont(None, 24)
+
     txt = open("data/level.txt", "r")
 
     lignes = txt.readlines()
@@ -57,15 +59,21 @@ def main():
             j += 1
             
             
-            while lignes[j] != "End bulle\n":
+            while lignes[j] != "Start img\n":
                 if current_Scene.bullManager == None:
                     current_Scene.bullManager = BulleManager()
                 current_Bulle = lignes[j].rstrip("\n").split(",")
                 
                 current_Scene.bullManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
                 j +=1
+            
+            j +=1
+            while lignes[j] != "End img\n":
+                current_img = lignes[j].rstrip("\n").split(",")
+    
+                current_Scene.imgs.append([pygame.image.load(current_img[0]).convert_alpha(), pygame.image.load(current_img[1]).convert_alpha()])
+
             scenes[current_Scene.name] = current_Scene
-        
             i = j
            
         i +=1

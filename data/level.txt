@@ -6,7 +6,8 @@ Start dialogue
 Start button
 data/buttons/playButton.png,data/buttons/playButtonUsed.png,342,625,selection
 Start bulle
-End bulle
+Start img
+End img
 
 Start level
 selection
@@ -19,7 +20,8 @@ data/selectionLevels/R1.04.png,data/selectionLevels/R1.04.png,68,288,R1.04
 data/selectionLevels/R1.07.png,data/selectionLevels/R1.07.png,384,288,R1.07
 data/selectionLevels/matiereVerrouillee.png,data/selectionLevels/matiereVerrouillee.png,700,288,selection
 Start bulle
-End bulle
+Start img
+End img
 
 Start level
 R1.04
@@ -113,7 +115,8 @@ Start bulle
 39654.00,E
 39939.00,R
 40219.00,T
-End bulle
+Start img
+End img
 
 
 Start level
@@ -164,4 +167,5 @@ Start bulle
 14224.00,j
 14759.00,PV
 15079.00,f
-End bulle
+Start img
+End img
