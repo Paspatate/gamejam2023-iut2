@@ -42,6 +42,8 @@ class Scene:
             
             self.listJ.append([])
             self.listF.append([])
+            print(self.dialogue)
+            print(i)
             width_slice = self.dialogue[i][1].get_width()//self.exo[i]
             
             for j in range(self.exo[i]):
