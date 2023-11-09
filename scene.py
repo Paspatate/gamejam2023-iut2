@@ -21,7 +21,7 @@ class Scene:
         Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
         Scene.sErreur.set_volume(0.5)
-        Scene.sErreur.set_volume(1)
+        
 
 
 
@@ -114,7 +114,7 @@ class Scene:
             
             if bulle_rep:
                 self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
-                Scene.sErreur.play()
+                Scene.sCorrect.play()
             elif bulle_rep == False:
                 
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
