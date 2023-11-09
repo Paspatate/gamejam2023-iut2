@@ -40,7 +40,7 @@ class Scene:
         self.scenes = {}
         self.listJ = []
         self.listF = []
-
+        self.last_exo = False
 
 
     def initDialogue(self):
@@ -79,7 +79,7 @@ class Scene:
         self.numExo = 0
         self.rep = [[]]
         self.bullManager.reset()
-
+        self.last_exo = False
 
 
 
@@ -119,17 +119,22 @@ class Scene:
 
 
         if self.bullManager != None and len(self.dialogue) > 0:
-            last_exo = False
+            
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
-                self.numExo += 1
-                self.rep.append([])
+                if not self.last_exo:
+                    self.numExo += 1
+                    self.rep.append([])
                 if self.numExo == len(self.exo):
-                    last_exo = True
-                    self.name = "selection"
-                    pygame.mixer.music.unload()
-                    self.scenes["selection"].loadM()
-                    self.reset()
-            if not last_exo:
+                    self.last_exo = True
+                   
+                    if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
+                        self.name = "selection"
+                        pygame.mixer.music.unload()
+                        self.scenes["selection"].loadM()
+                        self.reset()
+                        
+            if not self.last_exo:
+                
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
@@ -155,7 +160,7 @@ class Scene:
             screen.blit(button[button[5]],(button[2],button[3]))
 
 
-        if len(self.dialogue) >0:
+        if len(self.dialogue) >0 and not self.last_exo:
             screen.blit(self.bulle_question, (367, 78))
             screen.blit(self.dialogue[self.numExo][0], (394, 78))
             for i in range(len(self.rep[self.numExo])):

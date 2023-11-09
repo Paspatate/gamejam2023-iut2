@@ -13,7 +13,7 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    touche = {"f" : pygame.K_f, "j" : pygame.K_j, "R" : pygame.K_RETURN, "T" : pygame.K_TAB, "E" : pygame.K_EQUALS, "PV" : pygame.K_SEMICOLON}
+    touche = {"s" : pygame.K_s, "d" : pygame.K_d, "l" : pygame.K_l, "k" : pygame.K_k}
 
     Bulle.init_surface()
     Scene.init_surface()
@@ -97,7 +97,6 @@ def main():
 
 
     scenes["main"].loadM()
-    print(scenes.keys())
     while run:
         # managment des events
         event_list = pygame.event.get()
