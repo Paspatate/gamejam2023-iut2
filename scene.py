@@ -22,7 +22,7 @@ class Scene:
         Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
         Scene.sErreur.set_volume(0.5)
-        Scene.font = pygame.font.SysFont(None, 24)
+        Scene.font = pygame.font.SysFont(None, 50)
 
 
 
@@ -44,7 +44,7 @@ class Scene:
         self.listF = []
         self.last_exo = False
         self.nScore = 0
-        self.bScore = 0
+        self.bScore = None
         self.imgs = []
 
 
@@ -189,5 +189,7 @@ class Scene:
             screen.blit(Scene.font.render(f"{self.nScore} / 20", True , "WHITE"), (325,255))
 
         if self.name == "selection":
-            screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (241,480))
-            screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (557,480))
+            if self.scenes['R1.04'].bScore != None:
+                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (241,480))
+            if self.scenes['R1.07'].bScore != None:
+                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (557,480))
