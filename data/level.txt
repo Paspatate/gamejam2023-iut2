@@ -15,10 +15,33 @@ data/backgrounds/BackgroundSelection.png
 ./data/music/audio_menu_loop.ogg
 Start dialogue
 Start button
-data/buttons/retourButton.png,data/buttons/retourButtonused.png,10,650,main
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,22,650,main
 data/selectionLevels/R1.04.png,data/selectionLevels/R1.04.png,68,288,R1.04
 data/selectionLevels/R1.07.png,data/selectionLevels/R1.07.png,384,288,R1.07
 data/selectionLevels/matiereVerrouillee.png,data/selectionLevels/matiereVerrouillee.png,700,288,selection
+data/buttons/creditButton.png,data/buttons/creditButtonUsed.png,650,650,credit
+Start bulle
+Start img
+End img
+
+Start level
+score
+data/backgrounds/BackgroundScore.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,22,650,selection
+Start bulle
+Start img
+End img
+
+Start level
+credit
+data/backgrounds/BackgroundCredit.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,650,650,selection
 Start bulle
 Start img
 End img
@@ -116,6 +139,7 @@ Start bulle
 39939.00,k
 40219.00,s
 Start img
+./data/image/cerveau.png,740,290,190,190
 End img
 
 
@@ -338,4 +362,5 @@ Start bulle
 46259.00,d
 46364.00,k
 Start img
+./data/image/cerveau.png,740,290,190,190
 End img

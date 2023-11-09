@@ -12,7 +12,7 @@ class Bulle:
         self.rect.x = init_x
         self.rect.y = Bulle.Y
         self.keycode = keycode
-        self.alive = True
+        self.alive = False
         self.answer = False
         self.has_responded = False
         self.pos = pygame.Vector2(init_x,self.rect.y)
@@ -64,6 +64,8 @@ class Bulle:
         #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
         self.pos.x += Bulle.NOTE_SPEED *-1 * dt
         self.rect.x = self.pos.x
+        if self.pos.x > 740 and self.pos.x < 800:
+            self.alive = True
         # if not self.answer:
         #     self.
 
@@ -153,3 +155,18 @@ class BulleManager:
         self.current = 0
         for bulle in self.bulles:
             bulle.reset()
+
+    def calculeScore(self):
+        score = 0
+        nbPt = 20/len(self.bulles)
+        
+        for bulle in self.bulles:
+            
+            if bulle.answer == True:
+                
+                
+                score += nbPt
+               
+        score = round(score,2)
+        
+        return score

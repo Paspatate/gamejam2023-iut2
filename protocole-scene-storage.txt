@@ -15,6 +15,6 @@ Start bulle
 "x de la bulle","key de la bulle"
 "...","..."
 Start img
-"chemin img","x","y"
+"chemin img","x","y","scale_x","scale_y"
 End img
 

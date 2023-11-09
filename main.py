@@ -2,8 +2,16 @@ import pygame
 import sys
 from bulle import Bulle, BulleManager
 from scene import Scene
+from utils import clamp
 
 def main():
+    volume = 1
+    try:
+        volume = float(sys.argv[1])/100
+        print(f"Volume set to {clamp(volume*100, 0, 100)}%")
+    except:
+        print("Volume set to 100% (default)")
+
     pygame.init()
 
     WIN_HEIGHT = 768
@@ -16,9 +24,9 @@ def main():
     touche = {"f" : pygame.K_f, "j" : pygame.K_j, "s" : pygame.K_s, "d" : pygame.K_d, "k" : pygame.K_k, "l" : pygame.K_l}
 
     Bulle.init_surface()
-    Scene.init_surface()
+    Scene.init_ressource(volume)
 
-    font = pygame.font.SysFont(None, 24)
+    
 
     txt = open("data/level.txt", "r")
 
@@ -60,18 +68,19 @@ def main():
             
             
             while lignes[j] != "Start img\n":
-                if current_Scene.bullManager == None:
-                    current_Scene.bullManager = BulleManager()
+                if current_Scene.bulleManager == None:
+                    current_Scene.bulleManager = BulleManager()
                 current_Bulle = lignes[j].rstrip("\n").split(",")
                 
-                current_Scene.bullManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
+                current_Scene.bulleManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
                 j +=1
             
             j +=1
             while lignes[j] != "End img\n":
                 current_img = lignes[j].rstrip("\n").split(",")
     
-                current_Scene.imgs.append([pygame.image.load(current_img[0]).convert_alpha(), pygame.image.load(current_img[1]).convert_alpha()])
+                current_Scene.imgs.append([pygame.transform.scale(pygame.image.load(current_img[0]).convert_alpha(),(int(current_img[3]), int(current_img[4]))), int(current_img[1]), int(current_img[2])])
+                j += 1
 
             scenes[current_Scene.name] = current_Scene
             i = j
@@ -79,6 +88,19 @@ def main():
         i +=1
         
     txt.close()
+
+    scoreTxt = open("data/score.txt", "r")
+    score = scoreTxt.read()
+    score = score.split(",")
+    if len(score) > 1:
+        if score[0] == "None":
+            scenes["R1.04"].bScore = None
+        else:
+            scenes["R1.04"].bScore =float(score[0])
+        if score[1] == "None":
+            scenes["R1.07"].bScore = None
+        else:
+            scenes["R1.07"].bScore =float(score[1])
 
     
    
@@ -110,12 +132,13 @@ def main():
         
 
         pygame.display.update()
-
+        
         deltaTime = clock.get_time()
         clock.tick(TARGET_FPS)
         
 
         pygame.display.set_caption(f"fps: {clock.get_fps()}")
+
         
     pygame.quit()
 
