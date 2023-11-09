@@ -80,19 +80,7 @@ def main():
         
     txt.close()
 
-    detec_surf = pygame.Surface((100, 100))
-    detec_surf.fill((250, 150, 10))
-    detec = detec_surf.get_rect(center=(201, 384))
     
-    bgM = pygame.image.load("data/backgrounds/BackgroundMenu.png").convert()
-    bg = pygame.image.load("data/backgrounds/BackgroundLevelDefault.png").convert()
-
-    buttonP = pygame.image.load("data/buttons/playButton.png").convert_alpha()
-    buttonP2 = pygame.image.load("data/buttons/playButtonUsed.png").convert_alpha()
-
-    question_asm = pygame.image.load("data/questions/assembleur.png").convert_alpha()
-   
-    qasm_img = pygame.image.load("data/questions/assembleurR.png").convert_alpha()
    
     deltaTime = 0
     run = True
