@@ -159,8 +159,14 @@ class BulleManager:
     def calculeScore(self):
         score = 0
         nbPt = 20/len(self.bulles)
+        
         for bulle in self.bulles:
+            
             if bulle.answer == True:
+                
+                
                 score += nbPt
+               
         score = round(score,2)
+        
         return score

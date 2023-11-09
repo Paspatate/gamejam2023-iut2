@@ -34,7 +34,7 @@ class Scene:
     def __init__(self):
         self.name =""
         self.dialogue = []
-        self.bullManager = None
+        self.bulleManager = None
         self.buttons = []
         self.rectButtons = []
         self.bg = ""
@@ -87,17 +87,16 @@ class Scene:
     def reset(self):
         self.numExo = 0
         self.rep = [[]]
-        self.bullManager.reset()
+        self.bulleManager.reset()
         self.last_exo = False
         if self.bScore == None:
             self.bScore = self.nScore
         elif self.nScore > self.bScore:
             self.bScore = self.nScore
         
+        
 
-    def setScore(self, score):
-        self.nScore == score
-
+    
     def saveScore(self):
         score = open("data/score.txt", "w")
         score.write(f"{self.scenes['R1.04'].bScore}")
@@ -137,45 +136,46 @@ class Scene:
                     i += 1
 
             elif event.type == pygame.KEYDOWN:
-                if self.bullManager != None:
-                    bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)
+                if self.bulleManager != None:
+                    bulle_rep = self.bulleManager.handle_key(event.key, Scene.detec)
 
 
 
 
-        if self.bullManager != None and len(self.dialogue) > 0:
+        if self.bulleManager != None and len(self.dialogue) > 0:
 
-            if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
+            if self.bulleManager.current == sum_to(self.exo, self.numExo+1) and self.bulleManager.current != 0:
                 if not self.last_exo:
                     self.numExo += 1
                     self.rep.append([])
                 if self.numExo == len(self.exo):
                     self.last_exo = True
 
-                    if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
-                        self.scores = self.bullManager.calculeScore()
+                    if self.bulleManager.bulles[self.bulleManager.current-1].pos.x <=-20:
+                        self.nScore = self.bulleManager.calculeScore()
                         self.name = "score"
                         pygame.mixer.music.unload()
                         self.scenes["score"].loadM()
-                        self.scenes["score"].setScore(self.nScore)
+                        self.scenes["score"].nScore = self.nScore
                         self.reset()
                         self.saveScore()
+                        
 
             if not self.last_exo:
 
                 if bulle_rep:
-                    self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
+                    self.rep[self.numExo].append(self.listJ[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
                 elif bulle_rep == False:
 
-                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
+                    self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current  - sum_to(self.exo, self.numExo)])
                     Scene.sErreur.play()
-                elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
-                    self.bullManager.bulles[self.bullManager.current-1].has_responded = True
+                elif (not self.bulleManager.bulles[self.bulleManager.current-1].has_responded and not self.bulleManager.bulles[self.bulleManager.current-1].can_interact):
+                    self.bulleManager.bulles[self.bulleManager.current-1].has_responded = True
 
-                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+                    self.rep[self.numExo].append(self.listF[self.numExo][self.bulleManager.current - sum_to(self.exo, self.numExo)-1])
                     Scene.sErreur.play()
-            self.bullManager.update(deltaTime, Scene.detec)
+            self.bulleManager.update(deltaTime, Scene.detec)
 
 
 
@@ -193,8 +193,8 @@ class Scene:
                 screen.blit(self.rep[self.numExo][i], (i* self.dialogue[self.numExo][1].get_width()//self.exo[self.numExo] + 100, 568))
 
 
-        if self.bullManager != None:
-            self.bullManager.draw(screen)
+        if self.bulleManager != None:
+            self.bulleManager.draw(screen)
 
         for img in self.imgs:
             screen.blit(img[0],(img[1],img[2]))

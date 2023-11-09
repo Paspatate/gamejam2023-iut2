@@ -68,11 +68,11 @@ def main():
             
             
             while lignes[j] != "Start img\n":
-                if current_Scene.bullManager == None:
-                    current_Scene.bullManager = BulleManager()
+                if current_Scene.bulleManager == None:
+                    current_Scene.bulleManager = BulleManager()
                 current_Bulle = lignes[j].rstrip("\n").split(",")
                 
-                current_Scene.bullManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
+                current_Scene.bulleManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
                 j +=1
             
             j +=1
