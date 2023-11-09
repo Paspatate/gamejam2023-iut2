@@ -41,7 +41,8 @@ class Scene:
         self.listJ = []
         self.listF = []
         self.last_exo = False
-        self.scores = []
+        self.nScores = 0
+        self.bScore = 0
         self.imgs = []
 
 
@@ -82,6 +83,10 @@ class Scene:
         self.rep = [[]]
         self.bullManager.reset()
         self.last_exo = False
+        if self.nScores > self.bScore:
+            self.bScore = self.nScores
+        
+
 
 
 
@@ -128,8 +133,9 @@ class Scene:
                     self.rep.append([])
                 if self.numExo == len(self.exo):
                     self.last_exo = True
-                   
+
                     if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
+                        self.scores = self.bullManager.calculeScore()
                         self.name = "selection"
                         pygame.mixer.music.unload()
                         self.scenes["selection"].loadM()
@@ -140,18 +146,15 @@ class Scene:
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
-                    print("bulle_rep True")
                 elif bulle_rep == False:
-                    print("bulle_rep False")
+
                     self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
                     Scene.sErreur.play()
                 elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
-                    print("avant dernier pas utilisé")
                     self.bullManager.bulles[self.bullManager.current-1].has_responded = True
-                    if self.bullManager.current-1 >= sum_to(self.exo, self.numExo):
-                        self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+
+                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
                     Scene.sErreur.play()
-            
             self.bullManager.update(deltaTime, Scene.detec)
 
 

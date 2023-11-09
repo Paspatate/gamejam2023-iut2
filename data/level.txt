@@ -15,10 +15,21 @@ data/backgrounds/BackgroundSelection.png
 ./data/music/audio_menu_loop.ogg
 Start dialogue
 Start button
-data/buttons/retourButton.png,data/buttons/retourButtonused.png,10,650,main
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,10,650,score
 data/selectionLevels/R1.04.png,data/selectionLevels/R1.04.png,68,288,R1.04
 data/selectionLevels/R1.07.png,data/selectionLevels/R1.07.png,384,288,R1.07
 data/selectionLevels/matiereVerrouillee.png,data/selectionLevels/matiereVerrouillee.png,700,288,selection
+Start bulle
+Start img
+End img
+
+Start level
+score
+data/backgrounds/BackgroundScore.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,10,650,selection
 Start bulle
 Start img
 End img
