@@ -97,6 +97,7 @@ def main():
 
 
     scenes["main"].loadM()
+    print(scenes.keys())
     while run:
         # managment des events
         event_list = pygame.event.get()

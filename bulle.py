@@ -5,6 +5,7 @@ class Bulle:
     bulle_surface = {}
     Y = 350
     def __init__(self, init_x, keycode):
+        self.init_x = init_x
         self.image = pygame.Surface((64,64))
         #self.image.fill("blue")
         self.rect = self.image.get_rect()
@@ -86,6 +87,14 @@ class Bulle:
     def stop_interaction(self):
         self.can_interact = False
 
+    def reset(self):
+        self.rect.x = self.init_x
+        self.pos.x = self.rect.x
+        self.alive = True
+        self.answer = False
+        self.has_responded = False
+        self.can_interact = True
+        self.frame = 0
 
 # Gere toute les bulles d'un niveau (détéction, mise a jour et affichage)
 class BulleManager:
@@ -139,3 +148,8 @@ class BulleManager:
     def draw(self, screen: pygame.Surface):
         for bulle in self.bulles:
             bulle.draw(screen)
+    
+    def reset(self):
+        self.current = 0
+        for bulle in self.bulles:
+            bulle.reset()
