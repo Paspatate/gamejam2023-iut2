@@ -4,7 +4,7 @@ data/backgrounds/BackgroundMenu.png
 ./data/music/audio_menu_loop.ogg
 Start dialogue
 Start button
-data/buttons/playButton.png,data/buttons/playButtonUsed.png,400,250,selection
+data/buttons/playButton.png,data/buttons/playButtonUsed.png,342,625,selection
 Start bulle
 End bulle
 
