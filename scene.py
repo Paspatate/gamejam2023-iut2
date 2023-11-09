@@ -126,7 +126,7 @@ class Scene:
                     self.rep.append([])
                 if self.numExo == len(self.exo):
                     self.last_exo = True
-                    print(self.bullManager.bulles[self.bullManager.current-1].pos.x)
+                   
                     if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
                         self.name = "selection"
                         pygame.mixer.music.unload()
