@@ -57,7 +57,7 @@ class Bulle:
         # if not self.answer:
         #     self.
 
-        if self.rect.centerx <= 151:
+        if self.rect.centerx <= 151 or self.answer:
             self.kill()
 
     def handle_key(self, keys, detection_zone: pygame.Rect) -> int:
