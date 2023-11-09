@@ -1,14 +1,16 @@
 Start level
 "Nom de la scene"
 "chemin background"
-"nom de la prochaine scene X","..."
-"chemmin dialogue 1" , "num_slice dialogue 1" , " chemin dialogue 2", "num_slice dialogue 2" ,"..." ,"..."
+"chemin de la music"
+"nb bulles exo1"
+"..."
+Start dialogue
+"chemmin dialogue 1" 
+" chemin dialogue 2"
+"..." ,"..."
 Start button
-"chemin img button","x","y","nom de la prochaine scene"
+"chemin img button","chemin 2eme img","x","y","nom de la prochaine scene"
 "...","..."
-End button
-Start exo
-"nb bulles exo1", "nb bulles exo2","nb bulles exo3"
 Start bulle
 "x de la bulle","key de la bulle"
 "...","..."

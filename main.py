@@ -15,28 +15,69 @@ def main():
     screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
 
-    t_note = Bulle(1669.00, 350, pygame.K_f)
-    t_bulle_man = BulleManager()
-    t_bulle_man.add(t_note)
-    t_bulle_man.add(Bulle(2419.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(3169.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(3919.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(4669.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(5419.00, 350, pygame.K_f))    
-    t_bulle_man.add(Bulle(6169.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(6919.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(7669.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(8419.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(9169.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(9919.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(11419.00, 350, pygame.K_f))
-    t_bulle_man.add(Bulle(12169.00, 350, pygame.K_j))
-    t_bulle_man.add(Bulle(12919.00, 350, pygame.K_f))
-    #t_bulle_man.add(Bulle(10669.00, 350, pygame.K_f)) #8bar
-    
+    touche = {"f" : pygame.K_f, "j" : pygame.K_j}
+
     Bulle.init_surface()
     Scene.init_surface()
+
+    txt = open("data/level.txt", "r")
+
+    lignes = txt.readlines()
+    scenes = {}
+
+    
+    i = 0
+
+    while i < len(lignes):
+        
+        if lignes[i] == "Start level\n":
+             
+            current_Scene = Scene()
+            
+            current_Scene.name=lignes[i+1].rstrip("\n")
+            current_Scene.bg=pygame.image.load(lignes[i+2].rstrip("\n"))
+            current_Scene.music=lignes[i+3].rstrip("\n")
+            j = i +4
+            while lignes[j] != "Start dialogue\n":
+                current_Scene.exo.append(int(lignes[j].rstrip("\n")))
+                j += 1
+            j += 1
+            while lignes[j] != "Start button\n":
+                current_dialogue = lignes[j].rstrip("\n").split(",")
+
+                current_Scene.dialogue.append([pygame.image.load(current_dialogue[0]).convert_alpha(), pygame.image.load(current_dialogue[1]).convert_alpha()])
+                j +=1
+            current_Scene.initDialogue()
+            j += 1
+            
+            while lignes[j] != "Start bulle\n":
+                current_Ligne = lignes[j].rstrip("\n").split(",")
+                current_Scene.buttons.append([pygame.image.load(current_Ligne[0]).convert_alpha(),pygame.image.load(current_Ligne[1]).convert_alpha()
+                                              ,int(current_Ligne[2])  ,int(current_Ligne[3]) ,current_Ligne[4]])
+                j += 1
+            current_Scene.initButton()
+            
+            j += 1
+            
+            
+            while lignes[j] != "End bulle\n":
+                if current_Scene.bullManager == None:
+                    current_Scene.bullManager = BulleManager()
+                current_Bulle = lignes[j].rstrip("\n").split(",")
+                
+                current_Scene.bullManager.add(Bulle(float(current_Bulle[0]),touche[current_Bulle[1]]))
+                j +=1
+            scenes[current_Scene.name] = current_Scene
+        
+            i = j
+           
+        i +=1
+        
+    txt.close()
+
+    
+    
+    
 
     detec_surf = pygame.Surface((100, 100))
     detec_surf.fill((250, 150, 10))
@@ -55,22 +96,20 @@ def main():
     deltaTime = 0
     run = True
 
-    main = Scene("main", [],None, [[buttonP,buttonP2,400,250,"lvl1"]],bgM,[],"./data/music/audio_menu_loop.ogg")
-    lvl1 = Scene("lvl1",[[question_asm,qasm_img]],t_bulle_man,[],bg,[8],"./data/music/audio_bells.ogg")
-
+    
     
         
 
-    scenes = {main.name : main, lvl1.name : lvl1}
+    
 
     for scene in scenes.keys():
-        scenes[scene].setScenes(scenes)
+        scenes[scene].scenes = scenes
 
-    currentScene = scenes[main.name].name
+    currentScene = scenes["main"].name
 
 
 
-    main.loadM()
+    scenes["main"].loadM()
     while run:
         # managment des events
         event_list = pygame.event.get()

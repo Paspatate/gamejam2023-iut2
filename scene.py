@@ -17,51 +17,59 @@ class Scene:
 
 
 
-    def __init__(self, name,dialogue : list, bulleManager : BulleManager,buttons: list,bg, exo , music):
-        self.name = name
-        self.dialogue = dialogue
-        self.bullManager = bulleManager
-        self.buttons = buttons
+    def __init__(self):
+        self.name =""
+        self.dialogue = []
+        self.bullManager = None
+        self.buttons = []
         self.rectButtons = []
-        self.bg = bg
+        self.bg = ""
         self.rep = [[]]
         self.note = 0
-        self.exo = exo
+        self.exo = []
         self.numExo = 0
-        self.music = music
+        self.music = ""
         self.scenes = {}
-        self.listJ = [[]]
-        self.listF = [[]]
+        self.listJ = []
+        self.listF = []
         
 
-        i = 0
         
-        while i < len(exo):
-            width_slice = dialogue[i][1].get_width()//exo[i]
+    def initDialogue(self):
+        
+        i = 0
+        while i < len(self.exo):
             
-            for j in range(exo[i]):
+            self.listJ.append([])
+            self.listF.append([])
+            width_slice = self.dialogue[i][1].get_width()//self.exo[i]
+            
+            for j in range(self.exo[i]):
                 
-                self.listJ[i].append(dialogue[i][1].subsurface(pygame.Rect(
+                self.listJ[i].append(self.dialogue[i][1].subsurface(pygame.Rect(
                                                                 j*width_slice,
                                                                 0,
                                                                 width_slice,
-                                                                dialogue[i][1].get_height())))
+                                                                self.dialogue[i][1].get_height())))
                 
 
 
-            for j in range(exo[i]):
+            for j in range(self.exo[i]):
                 self.listF[i].append(Scene.erreur.subsurface(pygame.Rect(j*width_slice, 0, width_slice, Scene.erreur.get_height())))
+                
             i +=1
+
+    def initButton(self):
         
-        
-        for button in buttons:
-           
-            self.rectButtons.append([button[0].get_rect(topleft = (button[2],button[3])), button[4]])
-            button.append(0)
+        if len(self.buttons) >0:
+            for button in self.buttons:
+                
+                self.rectButtons.append([button[0].get_rect(topleft = (button[2],button[3])), button[4]])
+                button.append(0)
     
 
-    def setScenes(self, scenes : {}):
-        self.scenes = scenes
+    
+
 
 
     def loadM(self):
@@ -84,7 +92,8 @@ class Scene:
                             pygame.mixer.music.unload()
                             self.scenes[rect[1]].loadM()
             elif event.type == pygame.KEYDOWN:
-                bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)        
+                if bulle_rep != None:
+                    bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)        
 
         if self.bullManager != None and len(self.dialogue) >0:
             if bulle_rep:
@@ -94,6 +103,7 @@ class Scene:
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current])
             elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
                 self.bullManager.bulles[self.bullManager.current-1].has_responded = True
+                
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current-1])
 
             self.bullManager.update(deltaTime, Scene.detec)

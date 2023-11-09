@@ -3,17 +3,18 @@ import pygame
 class Bulle:
     NOTE_SPEED = 0.5
     bulle_surface = {}
-    def __init__(self, init_x, init_y, keycode):
+    Y = 350
+    def __init__(self, init_x, keycode):
         self.image = pygame.Surface((64,64))
         #self.image.fill("blue")
         self.rect = self.image.get_rect()
         self.rect.x = init_x
-        self.rect.y = init_y
+        self.rect.y = Bulle.Y
         self.keycode = keycode
         self.alive = True
         self.answer = False
         self.has_responded = False
-        self.pos = pygame.Vector2(init_x,init_y)
+        self.pos = pygame.Vector2(init_x,self.rect.y)
         self.can_interact = True
 
     @staticmethod
