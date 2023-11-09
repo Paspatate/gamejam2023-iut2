@@ -127,7 +127,7 @@ class Scene:
                 i = 0
                 while i < len(self.rectButtons):
                     if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
-                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main" and (self.name == "main" or self.name == "selection" or self.name == "score"):
+                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main"and  self.rectButtons[i][1] != "credit" and (self.name == "main" or self.name == "selection" or self.name == "score"):
                             pygame.mixer.music.unload()
                             self.scenes[self.rectButtons[i][1]].loadM()
                         self.name = self.rectButtons[i][1]
@@ -205,6 +205,6 @@ class Scene:
 
         if self.name == "selection":
             if self.scenes['R1.04'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (210,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (130,480))
             if self.scenes['R1.07'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (525,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (430,480))
