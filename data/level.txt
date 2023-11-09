@@ -24,7 +24,7 @@ Start level
 R1.04
 data/backgrounds/BackgroundlLevelR1.04.png
 ./data/music/audio_bells.ogg
-16
+15
 21
 Start dialogue
 data/questions/assembleur.png,data/questions/assembleurR.png
