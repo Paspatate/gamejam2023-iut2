@@ -98,6 +98,13 @@ class Scene:
     def setScore(self, score):
         self.nScore == score
 
+    def saveScore(self):
+        score = open("data/score.txt", "w")
+        score.write(f"{self.scenes['R1.04'].bScore}")
+        score.write(",")
+        score.write(f"{self.scenes['R1.07'].bScore}")
+
+        score.close()
 
 
     def loadM(self):
@@ -152,6 +159,7 @@ class Scene:
                         self.scenes["score"].loadM()
                         self.scenes["score"].setScore(self.nScore)
                         self.reset()
+                        self.saveScore()
 
             if not self.last_exo:
 
@@ -197,6 +205,6 @@ class Scene:
 
         if self.name == "selection":
             if self.scenes['R1.04'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (241,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (210,480))
             if self.scenes['R1.07'].bScore != None:
-                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (557,480))
+                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (525,480))

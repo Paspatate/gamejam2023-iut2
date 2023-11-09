@@ -25,7 +25,7 @@ def main():
     Bulle.init_surface()
     Scene.init_ressource(volume)
 
-    font = pygame.font.SysFont(None, 24)
+    
 
     txt = open("data/level.txt", "r")
 
@@ -87,6 +87,19 @@ def main():
         i +=1
         
     txt.close()
+
+    scoreTxt = open("data/score.txt", "r")
+    score = scoreTxt.read()
+    score = score.split(",")
+    if len(score) > 1:
+        if score[0] == "None":
+            scenes["R1.04"].bScore = None
+        else:
+            scenes["R1.04"].bScore =float(score[0])
+        if score[1] == "None":
+            scenes["R1.07"].bScore = None
+        else:
+            scenes["R1.07"].bScore =float(score[1])
 
     
    
