@@ -91,7 +91,6 @@ class Scene:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 i = 0
                 while i < len(self.rectButtons):
-                    print(self.rectButtons[i])
                     if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
                         self.buttons[i][5] = 1
                         
