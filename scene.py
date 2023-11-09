@@ -11,6 +11,8 @@ class Scene:
     sErreur = None
     sCorrect = None
     vol = None
+    font = None
+
 
 
     @staticmethod
@@ -24,7 +26,7 @@ class Scene:
         Scene.sCorrect.set_volume(volume)
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
         Scene.sErreur.set_volume(0.5 * volume)
-
+        Scene.font = pygame.font.SysFont(None, 24)
 
 
 
@@ -89,15 +91,17 @@ class Scene:
         self.last_exo = False
         if self.nScores > self.bScore:
             self.bScore = self.nScores
-        
 
+
+    def setScore(self, score):
+        self.nScores == score
 
 
 
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
         pygame.mixer.music.set_volume(Scene.vol)
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(loops=-1)
 
 
     def draw(self, screen , event_list : pygame.event, deltaTime):
@@ -131,7 +135,7 @@ class Scene:
 
 
         if self.bullManager != None and len(self.dialogue) > 0:
-            
+
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 if not self.last_exo:
                     self.numExo += 1
@@ -141,13 +145,14 @@ class Scene:
 
                     if self.bullManager.bulles[self.bullManager.current-1].pos.x <=-20:
                         self.scores = self.bullManager.calculeScore()
-                        self.name = "selection"
+                        self.name = "score"
                         pygame.mixer.music.unload()
-                        self.scenes["selection"].loadM()
+                        self.scenes["score"].loadM()
+                        self.scenes["score"].setScore(self.nScore)
                         self.reset()
-                        
+
             if not self.last_exo:
-                
+
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
@@ -183,3 +188,11 @@ class Scene:
 
         for img in self.imgs:
             screen.blit(img[0],(img[1],img[2]))
+
+
+        if self.name == "score":
+            screen.blit(Scene.font.render(f"{self.nScores} / 20", True , "Dark"), (800,400))
+
+        if self.name == "selection":
+            screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (800,400))
+            screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (800,800))
