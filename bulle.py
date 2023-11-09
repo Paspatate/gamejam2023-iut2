@@ -116,7 +116,6 @@ class BulleManager:
         rep = None
         if (len(self.bulles) <= self.current):
             return rep
-        
         match self.bulles[self.current].handle_key(keys, detection_zone) :
             case 0:
                 rep = True
