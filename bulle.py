@@ -49,7 +49,7 @@ class Bulle:
     def draw(self, screen:pygame.Surface):
         
         if self.alive:
-            #screen.blit(self.image, self.rect)
+           
             screen.blit(Bulle.bulle_surface[self.keycode][0], self.rect)
             if self.has_responded and not self.answer:
                 screen.blit(Bulle.bulle_surface[self.keycode][1], self.rect)
@@ -60,18 +60,17 @@ class Bulle:
         elif self.has_responded and self.answer and self.frame < 10:
             screen.blit(Bulle.bulle_surface["correct"][1],(135,320))
             self.frame += 1
-        pygame.draw.circle(screen, "red", self.rect.center,2)
+       
 
     def update(self, dt:float):
         
-        #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
+        
         self.pos.x += Bulle.NOTE_SPEED *-1 * dt
         self.rect.x = self.pos.x
         if self.pos.x > 740 and self.pos.x < 800:
             self.alive = True
             self.can_interact = True
-        # if not self.answer:
-        #     self.
+       
         if self.rect.centerx < 105:
             self.stop_interaction()
 
@@ -83,7 +82,7 @@ class Bulle:
     def handle_key(self, keys, detection_zone: pygame.Rect) -> int:
         
         self.has_responded = True
-        #print(id(self),"    ",self.rect.centerx < 151, " kill ", detection_zone.collidepoint(self.rect.center))
+        
         
         if self.can_interact:
 
@@ -93,7 +92,7 @@ class Bulle:
                 
                 return 0
             else:
-                #print("answer : " , self.answer, " can_interact : ",self.can_interact," alive : ",self.alive," has_responded : ",self.has_responded)
+                
                 return 1
         
         

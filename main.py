@@ -130,14 +130,7 @@ def main():
             if key != scenes[key].name:
                 scenes[key].name = key
 
-        if scenes[currentScene].bulleManager != None:
-                #print("first")
-                a = 0
-                for bulle in current_Scene.bulleManager.bulles:
-                    if bulle.has_responded == True:
-                        pass
-                        #print(a)
-                    a += 1
+        
 
         pygame.display.update()
         

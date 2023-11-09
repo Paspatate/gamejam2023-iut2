@@ -213,6 +213,5 @@ class Scene:
                 screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (380,480))
 
 
-        pygame.draw.rect(screen, "red",Scene.detec,width=2)
-        pygame.draw.circle(screen, "blue",Scene.detec.center,2)
+        
         
