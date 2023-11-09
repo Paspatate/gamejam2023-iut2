@@ -107,7 +107,7 @@ class Scene:
                             pygame.mixer.music.unload()
                             self.scenes[self.rectButtons[i][1]].loadM()
                         self.name = self.rectButtons[i][1]
-                        self.buttons[i][5] = 1
+                        self.buttons[i][5] = 0
 
                     i += 1
 
