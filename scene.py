@@ -10,19 +10,23 @@ class Scene:
     detec = None
     sErreur = None
     sCorrect = None
+    vol = None
     font = None
 
 
+
     @staticmethod
-    def init_surface():
+    def init_ressource(volume:float):
         Scene.erreur = pygame.image.load("data/questions/erreur.png").convert_alpha()
         Scene.bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
         Scene.bulle_rep = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
         Scene.detec = pygame.Rect((151, 334), (100, 100))
+        Scene.vol = volume
         Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
+        Scene.sCorrect.set_volume(volume)
         Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
-        Scene.sErreur.set_volume(0.5)
-        Scene.font = pygame.font.SysFont(None, 24)
+        Scene.sErreur.set_volume(0.5 * volume)
+        Scene.font = pygame.font.SysFont(None, 50)
 
 
 
@@ -43,8 +47,8 @@ class Scene:
         self.listJ = []
         self.listF = []
         self.last_exo = False
-        self.nScores = 0
-        self.bScore = 0
+        self.nScore = 0
+        self.bScore = None
         self.imgs = []
 
 
@@ -85,17 +89,18 @@ class Scene:
         self.rep = [[]]
         self.bullManager.reset()
         self.last_exo = False
-        if self.nScores > self.bScore:
-            self.bScore = self.nScores
+        if self.nScore > self.bScore:
+            self.bScore = self.nScore
         
 
     def setScore(self, score):
-        self.nScores == score
+        self.nScore == score
 
 
 
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
+        pygame.mixer.music.set_volume(Scene.vol)
         pygame.mixer.music.play(loops=-1)
 
 
@@ -114,7 +119,7 @@ class Scene:
                 i = 0
                 while i < len(self.rectButtons):
                     if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
-                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main" and (self.name == "main" or self.name == "selection"):
+                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main" and (self.name == "main" or self.name == "selection" or self.name == "score"):
                             pygame.mixer.music.unload()
                             self.scenes[self.rectButtons[i][1]].loadM()
                         self.name = self.rectButtons[i][1]
@@ -130,7 +135,7 @@ class Scene:
 
 
         if self.bullManager != None and len(self.dialogue) > 0:
-            
+
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 if not self.last_exo:
                     self.numExo += 1
@@ -145,9 +150,9 @@ class Scene:
                         self.scenes["score"].loadM()
                         self.scenes["score"].setScore(self.nScore)
                         self.reset()
-                        
+
             if not self.last_exo:
-                
+
                 if bulle_rep:
                     self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
                     Scene.sCorrect.play()
@@ -186,8 +191,10 @@ class Scene:
 
 
         if self.name == "score":
-            screen.blit(Scene.font.render(f"{self.nScores} / 20", True , "Dark"), (800,400))
+            screen.blit(Scene.font.render(f"{self.nScore} / 20", True , "WHITE"), (325,255))
 
         if self.name == "selection":
-            screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (800,400))
-            screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (800,800))
+            if self.scenes['R1.04'].bScore != None:
+                screen.blit(Scene.font.render(f"{self.scenes['R1.04'].bScore} / 20", True , "BLACK"), (241,480))
+            if self.scenes['R1.07'].bScore != None:
+                screen.blit(Scene.font.render(f"{self.scenes['R1.07'].bScore} / 20", True , "BLACK"), (557,480))
