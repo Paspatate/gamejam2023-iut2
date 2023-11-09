@@ -2,14 +2,15 @@ import pygame
 import sys
 from bulle import Bulle, BulleManager
 from scene import Scene
+from utils import clamp
 
 def main():
-    volume = 1
+    volume = 100
     try:
-        volume = float(sys.argv[1])
+        volume = float(sys.argv[1])/100
+        print(f"Volume set to {clamp(volume*100, 0, 100)}")
     except:
-        print("volume set to 1 (default)")
-        volume = 1
+        print("Volume set to 100% (default)")
 
     pygame.init()
 
