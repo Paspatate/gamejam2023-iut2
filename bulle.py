@@ -29,10 +29,10 @@ class Bulle:
                             pygame.transform.scale(pygame.image.load("data/keybinds/D_KEY_used.png").convert_alpha(),(64,64))),
 
             pygame.K_f: (pygame.transform.scale(pygame.image.load("data/keybinds/F_KEY.png").convert_alpha(),(64,64)),
-                            pygame.transform.scale(pygame.image.load("data/keybinds/F KEYused.png").convert_alpha(),(64,64))),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/F_KEY_used.png").convert_alpha(),(64,64))),
             
             pygame.K_j: (pygame.transform.scale(pygame.image.load("data/keybinds/J KEY.png").convert_alpha(),(64,64)),
-                            pygame.transform.scale(pygame.image.load("data/keybinds/J KEYused.png").convert_alpha(),(64,64))),
+                            pygame.transform.scale(pygame.image.load("data/keybinds/J_KEY_used.png").convert_alpha(),(64,64))),
             
             pygame.K_k: (pygame.transform.scale(pygame.image.load("data/keybinds/K_KEY.png").convert_alpha(),(64,64)),
                             pygame.transform.scale(pygame.image.load("data/keybinds/K_KEY_used.png").convert_alpha(),(64,64))),
