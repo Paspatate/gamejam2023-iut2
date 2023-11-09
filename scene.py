@@ -42,6 +42,8 @@ class Scene:
             
             self.listJ.append([])
             self.listF.append([])
+            print(self.dialogue)
+            print(i)
             width_slice = self.dialogue[i][1].get_width()//self.exo[i]
             
             for j in range(self.exo[i]):
@@ -92,7 +94,7 @@ class Scene:
                             pygame.mixer.music.unload()
                             self.scenes[rect[1]].loadM()
             elif event.type == pygame.KEYDOWN:
-                if bulle_rep != None:
+                if self.bullManager != None:
                     bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)        
 
         if self.bullManager != None and len(self.dialogue) >0:

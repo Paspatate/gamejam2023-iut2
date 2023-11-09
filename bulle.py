@@ -85,6 +85,7 @@ class BulleManager:
         self.current = 0
 
     def add(self, bulle: Bulle):
+      print(bulle.keycode)
       self.bulles.append(bulle)
 
     def update(self, dt:float, detection_zone: pygame.Rect):
@@ -116,7 +117,6 @@ class BulleManager:
         rep = None
         if (len(self.bulles) <= self.current):
             return rep
-        
         match self.bulles[self.current].handle_key(keys, detection_zone) :
             case 0:
                 rep = True
