@@ -92,7 +92,7 @@ class Bulle:
     def reset(self):
         self.rect.x = self.init_x
         self.pos.x = self.rect.x
-        self.alive = True
+        self.alive = False
         self.answer = False
         self.has_responded = False
         self.can_interact = True
@@ -159,8 +159,14 @@ class BulleManager:
     def calculeScore(self):
         score = 0
         nbPt = 20/len(self.bulles)
+        
         for bulle in self.bulles:
+            
             if bulle.answer == True:
+                
+                
                 score += nbPt
+               
         score = round(score,2)
+        
         return score
