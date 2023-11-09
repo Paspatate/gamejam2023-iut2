@@ -104,10 +104,7 @@ class Scene:
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 self.numExo += 1
                 self.rep.append([])
-            print("sum_to", sum_to(self.exo, self.numExo))
-            print("partie de exo", self.bullManager.current - sum_to(self.exo, self.numExo))
-            print("exo", self.numExo)
-            print("current", self.bullManager.current)
+            
             if bulle_rep:
                 self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
             elif bulle_rep == False:
