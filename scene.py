@@ -8,6 +8,9 @@ class Scene:
     bulle_question = None
     bulle_rep = None
     detec = None
+    sErreur = None
+    sCorrect = None
+   
 
     @staticmethod
     def init_surface():
@@ -15,7 +18,10 @@ class Scene:
         Scene.bulle_question = pygame.image.load("data/questions/BulleProf.png").convert_alpha()
         Scene.bulle_rep = pygame.image.load("data/questions/BulleEleve.png").convert_alpha()
         Scene.detec = pygame.Rect((151, 334), (100, 100))
-
+        Scene.sCorrect = pygame.mixer.Sound("data/sfx/sfx_touch.ogg")
+        Scene.sErreur= pygame.mixer.Sound("data/sfx/erreur.ogg")
+        Scene.sErreur.set_volume(0.5)
+        
 
 
 
@@ -77,6 +83,7 @@ class Scene:
     def loadM(self):
         pygame.mixer.music.load(self.music,"ogg")
         pygame.mixer.music.play()
+        
 
     def draw(self, screen , event_list : pygame.event, deltaTime):
         bulle_rep = None
@@ -84,15 +91,22 @@ class Scene:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 i = 0
                 while i < len(self.rectButtons):
-                    self.buttons[i][5] = 1
+                    if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
+                        self.buttons[i][5] = 1
+                        
                     i += 1
                     
             elif event.type == pygame.MOUSEBUTTONUP:
-                for rect in self.rectButtons:
-                    if rect[0].collidepoint(pygame.mouse.get_pos()):
-                            self.name = rect[1]
-                            pygame.mixer.music.unload()
-                            self.scenes[rect[1]].loadM()
+                i = 0
+                while i < len(self.rectButtons):
+                    if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
+                        self.name = self.rectButtons[i][1]
+                        pygame.mixer.music.unload()
+                        self.scenes[self.rectButtons[i][1]].loadM()
+                        self.buttons[i][5] = 1
+
+                    i += 1
+
             elif event.type == pygame.KEYDOWN:
                 if self.bullManager != None:
                     bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)
@@ -107,13 +121,16 @@ class Scene:
             
             if bulle_rep:
                 self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
+                Scene.sCorrect.play()
             elif bulle_rep == False:
                 
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
+                Scene.sErreur.play()
             elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
                 self.bullManager.bulles[self.bullManager.current-1].has_responded = True
                 
                 self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+                Scene.sErreur.play()
 
             self.bullManager.update(deltaTime, Scene.detec)
         
