@@ -69,8 +69,11 @@ class Scene:
                 self.rectButtons.append([button[0].get_rect(topleft = (button[2],button[3])), button[4]])
                 button.append(0)
     
-
-    
+    def reset(self):
+        self.numExo = 0
+        self.rep = [[]]
+        self.bullManager.reset()
+           
 
 
 
@@ -101,24 +104,28 @@ class Scene:
                 
 
         if self.bullManager != None and len(self.dialogue) > 0:
+            last_exo = False
             if self.bullManager.current == sum_to(self.exo, self.numExo+1) and self.bullManager.current != 0:
                 self.numExo += 1
                 self.rep.append([])
-            
-            if bulle_rep:
-                self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
-            elif bulle_rep == False:
-                
-                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
-            elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
-                self.bullManager.bulles[self.bullManager.current-1].has_responded = True
-                
-                self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
+                if self.numExo == len(self.exo):
+                    last_exo = True
+                    self.name = "selection"
+                    pygame.mixer.music.unload()
+                    self.scenes["selection"].loadM()
+                    self.reset()
+            if not last_exo:
+                if bulle_rep:
+                    self.rep[self.numExo].append(self.listJ[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)])
+                elif bulle_rep == False:
+                    
+                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current  - sum_to(self.exo, self.numExo)])
+                elif (not self.bullManager.bulles[self.bullManager.current-1].has_responded and not self.bullManager.bulles[self.bullManager.current-1].can_interact):
+                    self.bullManager.bulles[self.bullManager.current-1].has_responded = True
+                    
+                    self.rep[self.numExo].append(self.listF[self.numExo][self.bullManager.current - sum_to(self.exo, self.numExo)-1])
 
-            self.bullManager.update(deltaTime, Scene.detec)
-        
-
-        
+            self.bullManager.update(deltaTime, Scene.detec)        
         
         
 
@@ -129,6 +136,8 @@ class Scene:
             
             
         if len(self.dialogue) >0:
+            screen.blit(self.bulle_question, (367, 78))
+            screen.blit(self.dialogue[self.numExo][0], (394, 78))
             for i in range(len(self.rep[self.numExo])):
                 
                 screen.blit(self.rep[self.numExo][i], (i* self.dialogue[self.numExo][1].get_width()//self.exo[self.numExo] + 100, 568))

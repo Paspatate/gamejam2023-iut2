@@ -28,7 +28,8 @@ data/backgrounds/BackgroundlLevelR1.04.png
 21
 Start dialogue
 data/questions/assembleur.png,data/questions/assembleurR.png
-data/questions/assembleur.png,data/questions/assembleurR.png
+data/questions/assembleur2.png,data/questions/assembleur2R.png
+data/questions/assembleur3.png,data/questions/assembleur3R.png
 Start button
 Start bulle
 2434.00,f
