@@ -91,15 +91,23 @@ class Scene:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 i = 0
                 while i < len(self.rectButtons):
-                    self.buttons[i][5] = 1
+                    print(self.rectButtons[i])
+                    if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
+                        self.buttons[i][5] = 1
+                        
                     i += 1
                     
             elif event.type == pygame.MOUSEBUTTONUP:
-                for rect in self.rectButtons:
-                    if rect[0].collidepoint(pygame.mouse.get_pos()):
-                            self.name = rect[1]
-                            pygame.mixer.music.unload()
-                            self.scenes[rect[1]].loadM()
+                i = 0
+                while i < len(self.rectButtons):
+                    if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
+                        self.name = self.rectButtons[i][1]
+                        pygame.mixer.music.unload()
+                        self.scenes[self.rectButtons[i][1]].loadM()
+                        self.buttons[i][5] = 1
+
+                    i += 1
+
             elif event.type == pygame.KEYDOWN:
                 if self.bullManager != None:
                     bulle_rep = self.bullManager.handle_key(event.key, Scene.detec)
