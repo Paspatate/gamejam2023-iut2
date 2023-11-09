@@ -103,7 +103,7 @@ class Scene:
                 i = 0
                 while i < len(self.rectButtons):
                     if self.rectButtons[i][0].collidepoint(pygame.mouse.get_pos()):
-                        if self.rectButtons[i][1] != "selection" or self.rectButtons[i][1] != "main":
+                        if self.rectButtons[i][1] != "selection" and self.rectButtons[i][1] != "main":
                             pygame.mixer.music.unload()
                             self.scenes[self.rectButtons[i][1]].loadM()
                         self.name = self.rectButtons[i][1]
