@@ -61,17 +61,16 @@ class Bulle:
             
 
     def update(self, dt:float):
-        
+        #self.rect.x += Bulle.NOTE_SPEED * -1 * dt
         self.pos.x += Bulle.NOTE_SPEED *-1 * dt
         self.rect.x = self.pos.x
         if self.pos.x > 740 and self.pos.x < 800:
             self.alive = True
-       
-        
+        # if not self.answer:
+        #     self.
 
         if self.rect.centerx <= 151 or self.answer:
             self.kill()
-            
 
     def handle_key(self, keys, detection_zone: pygame.Rect) -> int:
         self.has_responded = True
