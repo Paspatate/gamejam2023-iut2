@@ -30,6 +30,18 @@ data/backgrounds/BackgroundScore.png
 Start dialogue
 Start button
 data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,10,650,selection
+data/buttons/creditButton.png,data/buttons/creditButtonUsed.png,10,650,credit
+Start bulle
+Start img
+End img
+
+Start level
+credit
+data/backgrounds/BackgroundCrédit.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/retourButton.png,data/buttons/retourButtonUsed.png,10,650,selection
 Start bulle
 Start img
 End img
