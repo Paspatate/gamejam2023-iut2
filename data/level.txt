@@ -5,9 +5,66 @@ data/backgrounds/BackgroundMenu.png
 Start dialogue
 Start button
 data/buttons/playButton.png,data/buttons/playButtonUsed.png,342,625,selection
+data/buttons/storyButton.png,data/buttons/storyButtonUsed.png,687,625,histoire
 Start bulle
 Start img
 End img
+
+Start level
+histoire
+data/backgrounds/BackgroundHistoire.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/historyButton.png,data/buttons/historyButtonUsed.png,34,256,tuto1
+Start bulle
+Start img
+End img
+
+Start level
+tuto1
+data/backgrounds/BackgroundTuto1.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/nextButton.png,data/buttons/nextButtonUsed.png,342,600,tuto2
+Start bulle
+Start img
+End img
+
+Start level
+tuto2
+data/backgrounds/BackgroundTuto2.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/nextButton.png,data/buttons/nextButtonUsed.png,342,600,tuto3
+Start bulle
+Start img
+End img
+
+Start level
+tuto3
+data/backgrounds/BackgroundTuto3.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/nextButton.png,data/buttons/nextButtonUsed.png,342,600,tuto4
+Start bulle
+Start img
+End img
+
+Start level
+tuto4
+data/backgrounds/BackgroundTuto4.png
+./data/music/audio_menu_loop.ogg
+Start dialogue
+Start button
+data/buttons/playButton.png,data/buttons/playButtonUsed.png,342,600,selection
+Start bulle
+Start img
+End img
+
 
 Start level
 selection
