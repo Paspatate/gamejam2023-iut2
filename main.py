@@ -138,7 +138,7 @@ def main():
         clock.tick(TARGET_FPS)
         
 
-        pygame.display.set_caption(f"fps: {clock.get_fps()}")
+        pygame.display.set_caption(f"Rytm's learning")
 
         
     pygame.quit()
