@@ -105,7 +105,7 @@ End img
 
 Start level
 R1.04
-data/backgrounds/BackgroundlLevelR1.04.png
+data/backgrounds/BackGroundlLevelR1.04.png
 ./data/music/audio_bells.ogg
 15
 21
@@ -202,7 +202,7 @@ End img
 
 Start level
 R1.07
-data/backgrounds/BackgroundLevelR1.07.png
+data/backgrounds/BackGroundLevelR1.07.png
 ./data/music/audio_drill.ogg
 39
 68
